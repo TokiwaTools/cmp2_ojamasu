@@ -1,0 +1,18 @@
+h1 {
+  margin: 2em auto;
+  text-align: center;
+}
+
+.mainTable {
+  margin: auto;
+}
+
+.mainTable td {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+}
+
+.mainTable td input[readonly] {
+  background: #CCC;
+}

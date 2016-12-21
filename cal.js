@@ -2,17 +2,7 @@ $(document).ready(function(){
   createTable();
   setHeaders();
   $('.mainTable input').change(function(e) {
-    var target = e.target;
-    var index = getIndexFromInput(target);
-    if (isEqual(index) ) {
-      $(target).attr('readonly', true);
-    }
-    if ( isClearAtRow(index[1]) ) {
-      console.log(index[1] + ' Row is Complete');
-    }
-    if ( isClearAtColumn(index[0]) ) {
-      console.log(index[0] + ' Column is Complete');
-    }
+    solve(e.target);
   });
 });
 
@@ -49,6 +39,23 @@ function setHeaders() {
   });
 }
 
+function solve(target) {
+  var index = getIndexFromInput(target);  //解いたセルのインデックス
+  //答えが合っているか
+  if (isEqual(index) ) {
+    $(target).attr('readonly', true);
+  }
+  //一行全て解き終わったか
+  if ( isClearAtRow(index[1]) ) {
+
+    console.log(index[1] + ' Row is Complete');
+  }
+  //一列全て解き終わったか
+  if ( isClearAtColumn(index[0]) ) {
+    console.log(index[0] + ' Column is Complete');
+  }
+}
+
 function getIndexFromInput(target) {
   var index = [];
   var className = $(target).attr('class');  //クラス名
@@ -57,8 +64,12 @@ function getIndexFromInput(target) {
   return index;
 }
 
+function getSum(index) {
+  return $('.mainTable input[class="' + index[0] + '-' + index[1] + '"]').val();
+}
+
 function isEqual(index) {
-  var sum = $(target).val();  //計算結果
+  var sum = getSum(index);  //計算結果
   var headers = getHeaders(index[0], index[1]);  //ヘッダーの値
 
   console.log(headers[0] + ' + ' + headers[1] + ' = ' + sum);

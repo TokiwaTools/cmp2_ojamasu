@@ -3,16 +3,64 @@ h1 {
   text-align: center;
 }
 
+/*テーブル*/
 .mainTable {
   margin: auto;
+  table-layout: fixed;
+  font-size: 2em;
 }
 
+/*セル*/
 .mainTable td {
-  width: 2em;
-  height: 2em;
+  width: 1.6em;
+  height: 1.6em;
   text-align: center;
+  padding: 0px;
 }
 
-.mainTable td input[readonly] {
+/*テキストボックス*/
+.mainTable input {
+  font-size: 1.0em;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0px;
+}
+
+/*演算子セル*/
+.mainTable .operator {
+  font-weight: bold;
+}
+
+/*行ヘッダーセル*/
+.mainTable .row-header {
+  color: #3674ff;
+}
+
+/*列ヘッダーセル*/
+.mainTable .column-header {
+  color: #33b147;
+}
+
+/*オーバーセル (11行・11列目)*/
+/*廃止するかも*/
+.mainTable .overcell {
+  border: 1px dashed #CCC;
+}
+
+/*解答中のセルの行・列セル*/
+.mainTable .answering {
+  background: #ffdb7e;
+}
+
+/*解き終わったセルのテキストボックス*/
+.mainTable input[disabled] {
   background: #CCC;
+}
+
+/*解いているセルのテキストボックス*/
+.mainTable input:focus {
+  background: #000;
+  color: #FFF;
 }

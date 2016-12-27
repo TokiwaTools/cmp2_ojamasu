@@ -1,5 +1,6 @@
-var operator = '*'; //演算子
+var operator = '+'; //演算子
 var main; //テーブルの要素
+var score = 0;  //スコア
 
 $(document).ready(function(){
   main = $('.mainTable');
@@ -76,11 +77,15 @@ function solve(target) {
   //一列全て解き終わったか
   if ( isClearAtColumn(target) ) {
     console.log(headers[1] + ' Column is Complete');
+    $( getCellsInAColumn(target) ).each(function() {
+      $(this).remove();
+    });
     return true;
   }
   //一行全て解き終わったか
   if ( isClearAtRow(target) ) {
     console.log(headers[0] + ' Row is Complete');
+    $(target).parent().parent().remove();
     return true;
   }
   return false;
@@ -171,4 +176,19 @@ function isClearAtColumn(target) {
     }
   });
   return bool;
+}
+
+//指定のinputがある行のセルのjQueryを取得
+function getCellsInARow(target) {
+  return $(target).parent().parent().find('tr');
+}
+
+//指定のinputがある行のセルのjQueryを取得
+function getCellsInAColumn(target) {
+  var tr = [];
+  var index = getHeaders(target)[1];
+  $(main).find('tr').each(function() {
+    tr.push( $(this).find('td').eq(index) );
+  });
+  return tr;
 }

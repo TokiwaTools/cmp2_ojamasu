@@ -1,10 +1,13 @@
 var operator = '+'; //演算子
-var main; //テーブルの要素
 var score = 0;  //スコア
+var main; //テーブルの要素
+var scoreboard; //スコアボードの要素
 
 $(document).ready(function(){
   main = $('.mainTable');
+  scoreboard = $('.scoreboard');
   createTable();
+  createScoreboard();
   setHeadersAtRandom();
   textboxOnFocus();
   textboxOnChange();
@@ -36,6 +39,16 @@ function createTable() {
   }
 }
 
+function createScoreboard() {
+  var title = $('<h2>');
+  title.html('Scoreboard');
+  $(scoreboard).append(title);
+  var scorep = $('<p>');
+  scorep.attr('class', 'score');
+  scorep.html(score);
+  $(scoreboard).append(scorep);
+}
+
 //ヘッダーにランダムな値をセット
 function setHeadersAtRandom() {
   $(main).find('.row-header').each(function() {
@@ -61,6 +74,7 @@ function textboxOnChange() {
   textbox.change(function(e) {
     if ( solve(e.target) ) {
       alert('1 Queue is Done!');
+      updateScore();
     }
   });
 }
@@ -80,15 +94,21 @@ function solve(target) {
     $( getCellsInAColumn(target) ).each(function() {
       $(this).remove();
     });
+    score += 100;
     return true;
   }
   //一行全て解き終わったか
   if ( isClearAtRow(target) ) {
     console.log(headers[0] + ' Row is Complete');
     $(target).parent().parent().remove();
+    score += 100;
     return true;
   }
   return false;
+}
+
+function updateScore() {
+  $(scoreboard).find('.score').html(score);
 }
 
 //answeringクラスを削除

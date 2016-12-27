@@ -3,6 +3,12 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  margin: 2em auto;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
 /*テーブル*/
 .mainTable {
   margin: auto;
@@ -70,4 +76,10 @@ h1 {
 .mainTable input:focus {
   background: #000;
   color: #FFF;
+}
+
+/*スコア*/
+.score {
+  text-align: center;
+  font-size: 1.6em;
 }

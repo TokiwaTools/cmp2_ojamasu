@@ -1,4 +1,4 @@
-var operator = '+'; //演算子
+var operator = '*'; //演算子
 var main; //テーブルの要素
 
 $(document).ready(function(){
@@ -70,6 +70,8 @@ function solve(target) {
   //答えが合っているか
   if (isEqual(target) ) {
     $(target).attr('disabled', true);
+  } else {
+    $(target).attr('class', 'notequal');
   }
   //一列全て解き終わったか
   if ( isClearAtColumn(target) ) {
@@ -93,9 +95,15 @@ function delAnswering() {
 function answering(target) {
   var headers = getHeaders(target);
   $(target).parent().siblings().find('input').each(function() {
+    if ($(this).attr('class') === 'notequal') {
+      return true;
+    }
     $(this).attr('class', 'answering');
   });
   $(main).find('tr').each(function() {
+    if ($(this).attr('class') === 'notequal') {
+      return true;
+    }
     $(this).find('input').eq(headers[1]-1).attr('class', 'answering');
   });
 }

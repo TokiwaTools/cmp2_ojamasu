@@ -54,9 +54,16 @@ h1 {
   background: #ffdb7e;
 }
 
+/*答えが間違っているセル*/
+.mainTable .notequal {
+  background: #e4471e;
+  color: #FFF;
+}
+
 /*解き終わったセルのテキストボックス*/
 .mainTable input[disabled] {
-  background: #CCC;
+  background: #2f49f2;
+  color: #FFF;
 }
 
 /*解いているセルのテキストボックス*/

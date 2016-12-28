@@ -7,6 +7,7 @@ $(document).ready(function(){
   main = $('.mainTable');
   scoreboard = $('.scoreboard');
   createTable();
+  setLimitingKeys();
   createScoreboard();
   setHeadersAtRandom();
   textboxOnFocus();
@@ -39,6 +40,7 @@ function createTable() {
   }
 }
 
+//スコアボードの作成
 function createScoreboard() {
   var title = $('<h2>');
   title.html('Scoreboard');
@@ -47,6 +49,48 @@ function createScoreboard() {
   scorep.attr('class', 'score');
   scorep.html(score);
   $(scoreboard).append(scorep);
+}
+
+//入力できるキーを制限し、エンターとタブでセル移動を可能にする
+function setLimitingKeys() {
+  $(main).on('keydown', 'input', function(e) {
+    if (!e) var e = window.event;
+
+    var k = e.keyCode;
+    //エンターで下のテキストボックスに移動
+    if (k == 13) {
+      focusLowerCell($(this));
+      return false;
+    }
+    else if (k == 9) {
+      focusRightCell($(this));
+      return false;
+    }
+    //数字キー・Backspaceなどの制御用キー以外を受け付けない
+    else if(!((k >= 48 && k <= 57) || (k >= 96 && k <= 105) || k == 8 || k == 46 || k == 39 || k == 37)) {
+      return false;
+    }
+  });
+}
+
+//下のテキストボックスにフォーカスさせる
+function focusLowerCell(target) {
+  var index = getHeaders(target);
+  var nextRow = index[0]+1;
+  if (nextRow >= getRowNum()) {
+    nextRow = 1;
+  }
+  $(main).find('tr').eq(nextRow).find('input').eq(index[1]-1).focus();
+}
+
+//右のテキストボックスにフォーカスさせる
+function focusRightCell(target) {
+  var index = getHeaders(target);
+  var nextColumn = index[1]+1;
+  if (nextColumn >= getColumnNum()) {
+    nextColumn = 1;
+  }
+  $(main).find('tr').eq(index[0]).find('input').eq(nextColumn-1).focus();
 }
 
 //ヘッダーにランダムな値をセット
@@ -107,6 +151,7 @@ function solve(target) {
   return false;
 }
 
+//スコアを更新
 function updateScore() {
   $(scoreboard).find('.score').html(score);
 }
@@ -114,6 +159,11 @@ function updateScore() {
 //answeringクラスを削除
 function delAnswering() {
   $(main).find('.answering').removeAttr('class');
+}
+
+//テキストボックスのtabindexタグを全て-1(TAB移動無効)にする
+function delTabIndex() {
+  $(main).find('input').attr('tabindex', -1)
 }
 
 //解答中のセルにansweringクラスを付与
@@ -130,6 +180,13 @@ function answering(target) {
       return true;
     }
     $(this).find('input').eq(headers[1]-1).attr('class', 'answering');
+  });
+}
+
+//tabindexをその行のみにセット
+function setTabIndex(target) {
+  $(target).parent().parent().find('input').each(function(i) {
+    $(this).attr('tabindex', i);
   });
 }
 
@@ -152,7 +209,7 @@ function isEqual(target) {
   return bool;
 }
 
-//何番目のヘッダーか返す
+//ヘッダー番号を返す (ヘッダーは0)
 function getHeaders(target) {
   var headers = [];
   headers.push( $(target).parent().parent().index() );
@@ -211,4 +268,14 @@ function getCellsInAColumn(target) {
     tr.push( $(this).find('td').eq(index) );
   });
   return tr;
+}
+
+//行数を返す(ヘッダーを除く)
+function getRowNum() {
+  return $(main).find('tr').length-1;
+}
+
+//列数を返す(ヘッダーを除く)
+function getColumnNum() {
+  return $(main).find('tr').eq(0).find('td').length-1;
 }

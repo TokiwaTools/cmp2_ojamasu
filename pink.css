@@ -1,0 +1,123 @@
+body {
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Osaka, arial, helvetica, sans-serif;
+
+//濃い
+	background: -moz-linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ff99cc 25%, #ff99cc 50%,
+        #ffbfdf 50%, #ffbfdf 75%, #ff99cc 75%,#ff99cc);
+    background: -webkit-linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ff99cc 25%, #ff99cc 50%,
+        #ffbfdf 50%, #ffbfdf 75%, #ff99cc 75%,#ff99cc);
+    background: linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ff99cc 25%, #ff99cc 50%,
+        #ffbfdf 50%, #ffbfdf 75%, #ff99cc 75%,#ff99cc);
+    -moz-background-size: 20px 20px;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
+
+//薄い
+	background: -moz-linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ffb2d8 25%, #ffb2d8 50%,
+        #ffbfdf 50%, #ffbfdf 75%, #ffb2d8 75%,#ffb2d8);
+    background: -webkit-linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ffb2d8 25%, #ffb2d8 50%,
+        #ffbfdf 50%, #ffbfdf 75%, #ffb2d8 75%,#ffb2d8);
+    background: linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ffb2d8 25%, #ffb2d8 50%,
+        #ffbfdf 50%, #ffbfdf 75%, #ffb2d8 75%,#ffb2d8);
+    -moz-background-size: 20px 20px;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
+
+
+}
+
+.pic{
+	margin: auto;
+	text-align : center;
+}
+
+#message{
+	margin: auto;
+	text-align : center;
+	color:#505050;
+
+}
+
+
+/*タイトル画像*/
+.title{
+	float:none;
+	margin:auto;
+	text-align: center;
+	padding: 10px;
+}
+.message{
+	float:none;
+	margin:auto;
+
+}
+
+
+#hidari,#migi{
+	color:#505050;
+	font-size: xx-large;
+	margin:auto;
+    border: 0px;
+    width:170px;
+    height:87px;
+    background: #ffd8eb left top no-repeat;
+}
+
+#hidari:hover,#migi:hover{
+    cursor: pointer;
+	background: #ff7fbf left top no-repeat;
+}
+
+/*テーブル*/
+.mainTable {
+  table-layout: fixed;
+  background:#ffd8eb;
+}
+
+/*セル*/
+.mainTable td {
+  width: 1.6em;
+  height: 1.6em;
+  text-align: center;
+  padding: 0px;
+  //background:#ffd8eb;
+
+}
+
+/*テキストボックス*/
+.mainTable input {
+  font-size: 1.0em;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0px;
+  background:#ffd8eb;
+
+}
+
+/*演算子セル*/
+.mainTable .operator {
+  font-weight: bold;
+}
+
+/*行ヘッダーセル*/
+.mainTable .row-header {
+  color: #3674ff;
+}
+
+/*列ヘッダーセル*/
+.mainTable .column-header {
+  color: #33b147;
+}
+
+/*オーバーセル (11行・11列目)*/
+/*廃止するかも*/
+.mainTable .overcell {
+  border: 1px dashed #CCC;
+}
+
+/*解答中のセルの行・列セル*/
+.mainTable .answering {
+  background: #ffdb7e;
+}

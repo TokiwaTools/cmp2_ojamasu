@@ -1,9 +1,10 @@
-var operator = '+'; //演算子
-var score = 0;  //スコア
 var main; //テーブルの要素
+var operator = '+'; //演算子 (+, *)
+var score = 0;  //スコア
 var scoreboard; //スコアボードの要素
 
-$(document).ready(function(){
+//テーブルの準備
+function gameReady(){
   main = $('.mainTable');
   scoreboard = $('.scoreboard');
   createTable();
@@ -11,8 +12,8 @@ $(document).ready(function(){
   createScoreboard();
   setHeadersAtRandom();
   textboxOnFocus();
-  textboxOnChange();
-});
+  textboxOnFocusout();
+}
 
 //空のテーブルを作成
 function createTable() {
@@ -57,40 +58,93 @@ function setLimitingKeys() {
     if (!e) var e = window.event;
 
     var k = e.keyCode;
-    //エンターで下のテキストボックスに移動
-    if (k == 13) {
-      focusLowerCell($(this));
-      return false;
-    }
-    else if (k == 9) {
-      focusRightCell($(this));
-      return false;
-    }
-    //数字キー・Backspaceなどの制御用キー以外を受け付けない
-    else if(!((k >= 48 && k <= 57) || (k >= 96 && k <= 105) || k == 8 || k == 46 || k == 39 || k == 37)) {
-      return false;
+    switch (k) {
+      case 13 : //エンター
+        focusHorizontalCell($(this), 1);
+        return false;
+      case 9 :  //タブ
+        focusVerticalCell($(this), 1);
+        return false;
+      case 38 : //↑
+        focusHorizontalCell($(this), -1);
+        return false;
+      case 40 : //↓
+        focusHorizontalCell($(this), 1);
+        return false;
+      case 37 : //←
+        focusVerticalCell($(this), -1);
+        return false;
+      case 39 : //→
+        focusVerticalCell($(this), 1);
+        return false;
+      default:
+        if(!((k >= 48 && k <= 57) || (k >= 96 && k <= 105) || k == 8 || k == 46 || k == 39 || k == 37)) {
+          return false;
+        }
+        break;
     }
   });
 }
 
 //下のテキストボックスにフォーカスさせる
-function focusLowerCell(target) {
+function focusHorizontalCell(target, direction) {
   var index = getHeaders(target);
-  var nextRow = index[0]+1;
-  if (nextRow >= getRowNum()) {
-    nextRow = 1;
+  var nextRow = index[0] + direction;
+  var targetBox = null;
+
+  while(true) {
+    if (nextRow === index[0]) {
+      break;
+    } else if (nextRow >= getRowNum()) {
+      nextRow = direction;
+    } else if (nextRow <= 0) {
+      nextRow = getRowNum() + direction;
+    }
+
+    var nextBox = $(main).find('tr').eq(nextRow).find('input').eq(index[1]-1);
+    if (nextBox.is(':disabled')) {
+      nextRow += direction;
+    } else {
+      targetBox = nextBox;
+      break;
+    }
   }
-  $(main).find('tr').eq(nextRow).find('input').eq(index[1]-1).focus();
+
+  if (targetBox === null) {
+    $(main).find('input').eq(0).focus();
+  } else {
+    $(targetBox).focus();
+  }
 }
 
 //右のテキストボックスにフォーカスさせる
-function focusRightCell(target) {
+function focusVerticalCell(target, direction) {
   var index = getHeaders(target);
-  var nextColumn = index[1]+1;
-  if (nextColumn >= getColumnNum()) {
-    nextColumn = 1;
+  var nextColumn = index[1] + direction;
+  var targetBox = null;
+
+  while(true) {
+    if (nextColumn === index[1]) {
+      break;
+    } else if (nextColumn >= getColumnNum()) {
+      nextColumn = direction;
+    } else if (nextColumn <= 0) {
+      nextColumn = getColumnNum() + direction;
+    }
+    var nextBox = $(main).find('tr').eq(index[0]).find('input').eq(nextColumn-1);
+    if ( nextBox.attr('disabled') ) {
+      nextColumn += direction;
+    } else {
+      targetBox = nextBox;
+      break;
+    }
   }
-  $(main).find('tr').eq(index[0]).find('input').eq(nextColumn-1).focus();
+
+  if (targetBox === null) {
+    $(main).find('input').eq(0).focus();
+  } else {
+    $(targetBox).focus();
+  }
 }
 
 //ヘッダーにランダムな値をセット
@@ -107,15 +161,16 @@ function setHeadersAtRandom() {
 function textboxOnFocus() {
   var textbox = $(main).find('input');
   textbox.focus(function(e) {
+    delValue(e.target);
     delAnswering();
     answering(e.target);
   });
 }
 
-//テキストボックスの変更時
-function textboxOnChange() {
+//テキストボックスのアンフォーカス時
+function textboxOnFocusout() {
   var textbox = $(main).find('input');
-  textbox.change(function(e) {
+  textbox.focusout(function(e) {
     if ( solve(e.target) ) {
       alert('1 Queue is Done!');
       updateScore();
@@ -123,9 +178,12 @@ function textboxOnChange() {
   });
 }
 
-//解の確認
+//解の確認、一列/一行解き終わったか返す
 function solve(target) {
   var headers = getHeaders(target);
+  if ($(target).val() == '') {
+    return false;
+  }
   //答えが合っているか
   if (isEqual(target) ) {
     $(target).attr('disabled', true);
@@ -154,6 +212,13 @@ function solve(target) {
 //スコアを更新
 function updateScore() {
   $(scoreboard).find('.score').html(score);
+}
+
+//不正解のセルのみ値を削除する
+function delValue(target) {
+  if ( $(target).attr('class') === 'notequal' ) {
+    $(target).val('');
+  }
 }
 
 //answeringクラスを削除

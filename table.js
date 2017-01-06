@@ -1,7 +1,15 @@
-var main; //テーブルの要素
-var operator = '+'; //演算子 (+, *)
-var score = 0;  //スコア
-var scoreboard; //スコアボードの要素
+var main;               //テーブルの要素
+var scoreboard;         //スコアボードの要素
+
+var operator = '+';     //演算子 (+, *)
+var maxRowNum = 10;     //最大行数
+var maxColumnNum = 10;  //最大列数
+
+var score = 0;          //スコア
+var scoreInterval = 100;//スコアの増減間隔
+
+var bonustime = false;    //ボーナスタイム
+var bonusInterval = 300;  //ボーナスタイムの間隔
 
 //テーブルの準備
 function gameReady(){
@@ -17,19 +25,19 @@ function gameReady(){
 
 //空のテーブルを作成
 function createTable() {
-  for (var j = 0; j < 12; j++) {
+  for (var j = 0; j < maxRowNum+2; j++) {
     var tr = $('<tr>');
-    for (var i = 0; i < 12; i++) {
+    for (var i = 0; i < maxColumnNum+2; i++) {
       var td = $('<td>');
 
       if (i === 0 && j === 0) {
         td.attr('class', 'operator');
         td.html(operator);
-      } else if (j === 0 && i !== 11) {
+      } else if (j === 0 && i !== maxColumnNum+1) {
         td.attr('class', 'column-header');
-      } else if (i === 0 && j !== 11) {
+      } else if (i === 0 && j !== maxRowNum+1) {
         td.attr('class', 'row-header');
-      } else if (i === 11 || j === 11) {
+      } else if (i === maxColumnNum+1 || j === maxRowNum+1) {
         td.attr('class', 'overcell');
       } else {
         td.html('<input type="text" maxlength="2">');
@@ -39,6 +47,7 @@ function createTable() {
     }
     $(main).append(tr);
   }
+  $(main).show();
 }
 
 //スコアボードの作成
@@ -77,6 +86,9 @@ function setLimitingKeys() {
       case 39 : //→
         focusVerticalCell($(this), 1);
         return false;
+      case 32 : //スペース
+        autoComplete($(this));
+        return false;
       default:
         if(!((k >= 48 && k <= 57) || (k >= 96 && k <= 105) || k == 8 || k == 46 || k == 39 || k == 37)) {
           return false;
@@ -111,7 +123,7 @@ function focusHorizontalCell(target, direction) {
   }
 
   if (targetBox === null) {
-    $(main).find('input').eq(0).focus();
+    $(target).blur();
   } else {
     $(targetBox).focus();
   }
@@ -141,7 +153,7 @@ function focusVerticalCell(target, direction) {
   }
 
   if (targetBox === null) {
-    $(main).find('input').eq(0).focus();
+    $(target).blur();
   } else {
     $(targetBox).focus();
   }
@@ -172,8 +184,11 @@ function textboxOnFocusout() {
   var textbox = $(main).find('input');
   textbox.focusout(function(e) {
     if ( solve(e.target) ) {
-      alert('1 Queue is Done!');
+      score += scoreInterval;
       updateScore();
+      if (isBonusTime()) {
+        readingBarcode();
+      }
     }
   });
 }
@@ -196,14 +211,12 @@ function solve(target) {
     $( getCellsInAColumn(target) ).each(function() {
       $(this).remove();
     });
-    score += 100;
     return true;
   }
   //一行全て解き終わったか
   if ( isClearAtRow(target) ) {
     console.log(headers[0] + ' Row is Complete');
     $(target).parent().parent().remove();
-    score += 100;
     return true;
   }
   return false;
@@ -260,14 +273,14 @@ function isEqual(target) {
   var sum = $(target).val();  //計算結果
   var headers = getHeadersValues(target);  //ヘッダーの値
 
-  console.log(headers[1] + ' + ' + headers[0] + ' = ' + sum);
+  console.log(headers.row + ' + ' + headers.column + ' = ' + sum);
   var bool = false;
   switch (operator) {
     case '+':
-      bool = (sum == parseInt(headers[0]) + parseInt(headers[1]) );
+      bool = (sum == headers.row + headers.column );
       break;
     case '*':
-      bool = (sum == parseInt(headers[0]) * parseInt(headers[1]) );
+      bool = (sum == headers.row * headers.column );
       break;
   }
   console.log(bool);
@@ -286,8 +299,8 @@ function getHeaders(target) {
 function getHeadersValues(target) {
   var values = [];
   var headers = getHeaders(target);
-  values.push( $(main).find('.column-header').eq(headers[1]-1).text() );
-  values.push( $(main).find('.row-header').eq(headers[0]-1).text() );
+  values.row = parseInt( $(main).find('.row-header').eq(headers[0]-1).text() );
+  values.column = parseInt( $(main).find('.column-header').eq(headers[1]-1).text() );
   return values;
 }
 
@@ -343,4 +356,69 @@ function getRowNum() {
 //列数を返す(ヘッダーを除く)
 function getColumnNum() {
   return $(main).find('tr').eq(0).find('td').length-1;
+}
+
+//自動解答
+function autoComplete(target) {
+  var value = getHeadersValues(target);
+  var answer;
+  switch (operator) {
+    case '+':
+      answer = value.row + value.column;
+      break;
+    case '*':
+      answer = value.row * value.column;
+      break;
+  }
+  target.val(answer);
+}
+
+//ボーナスタイムかどうか
+function isBonusTime() {
+  return (score%bonusInterval == 0);
+}
+
+//バーコードリーダーからバーコードを読み込む
+function readingBarcode() {
+  var reading = {
+    clear : function() {
+      $('.firstBarcode,.secondBarcode').val('');
+    },
+    endFirst : function() {
+      return $('.firstBarcode').val().length == 13;
+    },
+    endSecond : function() {
+      return $('.secondBarcode').val().length == 13;
+    },
+    end : function() {
+      return this.endFirst() && this.endSecond();
+    },
+    close : function() {
+      $('.bonustimeDialog').dialog('close');
+    }
+  }
+
+  $('.bonustimeDialog').dialog('open');
+  $('.firstBarcode').focus();
+  $('.firstBarcode').keydown(function(e) {
+    keyCheck(e.keyCode);
+    if (reading.end()) {
+      reading.close();
+      getBarcodeTime = false;
+    } else if (reading.endFirst()) {
+      $('.secondBarcode').focus();
+    }
+  });
+  $('.secondBarcode').keydown(function(e) {
+    keyCheck(e.keyCode);
+    if (reading.end()) {
+      reading.close();
+      getBarcodeTime = false;
+    } else if (reading.endSecond()) {
+      $('.firstBarcode').focus();
+    }
+  });
+
+  reading.clear();
+  getBarcodeTime = true;
 }

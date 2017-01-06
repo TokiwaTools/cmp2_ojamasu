@@ -11,6 +11,7 @@ h2 {
 
 /*テーブル*/
 .mainTable {
+  display: none;
   margin: 2em auto;
   table-layout: fixed;
   font-size: 2em;
@@ -91,5 +92,11 @@ h2 {
 
 /*名前入力決定ボタン*/
 .nameboxButton {
-  
+
+}
+
+/*ボーナスタイムダイアログ*/
+.bonustimeDialog {
+  text-align: center;
+  margin: auto;
 }

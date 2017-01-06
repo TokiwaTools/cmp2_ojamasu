@@ -2,13 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="jquery-ui.min.css">
     <link type="text/css" rel="stylesheet" href="default.css">
     <link type="text/css" rel="stylesheet" href="pink.css">
-    <link type="text/css" rel="stylesheet" href="jquery-ui.min.css">
     <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script type="text/javascript" src="ready.js"></script>
     <script type="text/javascript" src="whatsyourname.js"></script>
     <script type="text/javascript" src="question.js"></script>
+    <script type="text/javascript" src="score.js"></script>
+    <script type="text/javascript" src="timer.js"></script>
+    <script type="text/javascript" src="bonus.js"></script>
     <script type="text/javascript" src="table.js"></script>
     <script type="text/javascript" src="barcode.js"></script>
     <title>おじゃマス計算</title>
@@ -25,11 +29,15 @@
     <div class="choices">
     </div>
 
+    <div class="timerboard"></div>
+
     <form>
       <table class="mainTable" border="1" cellspacing="0"></table>
     </form>
 
     <div class="scoreboard"></div>
+
+    <div class="areyouready" title="準備はOK?"></div>
 
     <div class="bonustimeDialog" title="ボーナスタイム！">
       <p>バーコードリーダーでピッ</p>

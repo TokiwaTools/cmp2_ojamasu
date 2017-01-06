@@ -1,26 +1,29 @@
-var main;               //テーブルの要素
-var scoreboard;         //スコアボードの要素
+var main;         //テーブルの要素
 
+//テーブル
 var operator = '+';     //演算子 (+, *)
 var maxRowNum = 10;     //最大行数
 var maxColumnNum = 10;  //最大列数
 
-var score = 0;          //スコア
-var scoreInterval = 100;//スコアの増減間隔
-
-var bonustime = false;    //ボーナスタイム
-var bonusInterval = 300;  //ボーナスタイムの間隔
+var playingTime = 0;  //プレイ時間
 
 //テーブルの準備
 function gameReady(){
   main = $('.mainTable');
   scoreboard = $('.scoreboard');
+  timer = $('.timerboard');
   createTable();
   setLimitingKeys();
   createScoreboard();
+  createTimerboard();
   setHeadersAtRandom();
   textboxOnFocus();
   textboxOnFocusout();
+  openAreYouReady();
+}
+
+function openAreYouReady() {
+  $('.areyouready').dialog('open');
 }
 
 //空のテーブルを作成
@@ -48,17 +51,6 @@ function createTable() {
     $(main).append(tr);
   }
   $(main).show();
-}
-
-//スコアボードの作成
-function createScoreboard() {
-  var title = $('<h2>');
-  title.html('Scoreboard');
-  $(scoreboard).append(title);
-  var scorep = $('<p>');
-  scorep.attr('class', 'score');
-  scorep.html(score);
-  $(scoreboard).append(scorep);
 }
 
 //入力できるキーを制限し、エンターとタブでセル移動を可能にする
@@ -222,11 +214,6 @@ function solve(target) {
   return false;
 }
 
-//スコアを更新
-function updateScore() {
-  $(scoreboard).find('.score').html(score);
-}
-
 //不正解のセルのみ値を削除する
 function delValue(target) {
   if ( $(target).attr('class') === 'notequal' ) {
@@ -371,54 +358,4 @@ function autoComplete(target) {
       break;
   }
   target.val(answer);
-}
-
-//ボーナスタイムかどうか
-function isBonusTime() {
-  return (score%bonusInterval == 0);
-}
-
-//バーコードリーダーからバーコードを読み込む
-function readingBarcode() {
-  var reading = {
-    clear : function() {
-      $('.firstBarcode,.secondBarcode').val('');
-    },
-    endFirst : function() {
-      return $('.firstBarcode').val().length == 13;
-    },
-    endSecond : function() {
-      return $('.secondBarcode').val().length == 13;
-    },
-    end : function() {
-      return this.endFirst() && this.endSecond();
-    },
-    close : function() {
-      $('.bonustimeDialog').dialog('close');
-    }
-  }
-
-  $('.bonustimeDialog').dialog('open');
-  $('.firstBarcode').focus();
-  $('.firstBarcode').keydown(function(e) {
-    keyCheck(e.keyCode);
-    if (reading.end()) {
-      reading.close();
-      getBarcodeTime = false;
-    } else if (reading.endFirst()) {
-      $('.secondBarcode').focus();
-    }
-  });
-  $('.secondBarcode').keydown(function(e) {
-    keyCheck(e.keyCode);
-    if (reading.end()) {
-      reading.close();
-      getBarcodeTime = false;
-    } else if (reading.endSecond()) {
-      $('.firstBarcode').focus();
-    }
-  });
-
-  reading.clear();
-  getBarcodeTime = true;
 }

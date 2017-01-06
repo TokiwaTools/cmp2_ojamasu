@@ -1,14 +1,3 @@
-$(function($) {
-  $('.bonustimeDialog').dialog({
-    autoOpen: false,
-    width: 500,
-    modal: true,
-    open: function(event, ui) {
-      $(".ui-dialog-titlebar-close").hide();
-    }
-  });
-});
-
 var getBarcodeTime = false;  //バーコード入力受付中
 var barcodeCounter = 0;     //バーコードを入力した回数
 var barcodeRow = [];        //行ヘッダー用バーコード

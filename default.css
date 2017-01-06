@@ -4,7 +4,7 @@ h1 {
 }
 
 h2 {
-  margin: 2em auto;
+  margin: 1em auto;
   margin-bottom: 1em;
   text-align: center;
 }
@@ -12,7 +12,7 @@ h2 {
 /*テーブル*/
 .mainTable {
   display: none;
-  margin: 2em auto;
+  margin: 1em auto;
   table-layout: fixed;
   font-size: 2em;
 }
@@ -99,4 +99,22 @@ h2 {
 .bonustimeDialog {
   text-align: center;
   margin: auto;
+}
+
+/*準備OK？ダイアログ*/
+.areyouready {
+
+}
+
+/*タイム*/
+.time {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+  text-align: center;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  float: none;
 }

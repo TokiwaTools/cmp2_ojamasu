@@ -1,13 +1,13 @@
 var getBarcodeTime = false;  //バーコード入力受付中
-var barcodeCounter = 0;     //バーコードを入力した回数
-var barcodeRow = [];        //行ヘッダー用バーコード
-var barcodeColumn = [];     //列ヘッダー用バーコード
+var barcodeCounter = 0;      //バーコードを入力した回数
+var barcodeRow = [];         //行ヘッダー用バーコード
+var barcodeColumn = [];      //列ヘッダー用バーコード
 
 //バーコードの数字を列ヘッダーに割り当てる
 function setColumnHeadersByBarcode() {
   var columnNum = getColumnNum();
   $(main).find('.column-header').each(function(i) {
-    $(this).text( barcodeColumn[barcodeColumn.length - columnNum + i + 1] );
+    $(this).text( barcodeColumn[barcodeColumn.length - columnNum + i] );
   });
 }
 
@@ -15,7 +15,7 @@ function setColumnHeadersByBarcode() {
 function setRowHeadersByBarcode() {
   var rowNum = getRowNum();
   $(main).find('.row-header').each(function(i) {
-    $(this).text( barcodeRow[barcodeRow.length - rowNum + i + 1] );
+    $(this).text( barcodeRow[barcodeRow.length - rowNum + i] );
   });
 }
 

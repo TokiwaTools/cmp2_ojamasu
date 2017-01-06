@@ -1,6 +1,6 @@
 //ボーナスタイム
 var bonustime = false;    //ボーナスタイム
-var bonusInterval = 100;  //ボーナスタイムの間隔
+var bonusInterval = 200;  //ボーナスタイムの間隔
 
 //ボーナスタイムかどうか
 function isBonusTime() {

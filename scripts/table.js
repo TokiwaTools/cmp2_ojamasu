@@ -4,11 +4,12 @@ var main;         //テーブルの要素
 var operator = '+';     //演算子 (+, *)
 var maxRowNum = 10;     //最大行数
 var maxColumnNum = 10;  //最大列数
+var inputCell = '<input type="text" maxlength="2" onFocus="textboxOnFocus(this)" onBlur="textboxOnFocusout(this)">';  //セル
 
 var playingTime = 0;  //プレイ時間
 
-//テーブルの準備
-function gameReady(){
+//ゲームの準備
+function gameReady() {
   main = $('.mainTable');
   scoreboard = $('.scoreboard');
   timer = $('.timerboard');
@@ -17,9 +18,20 @@ function gameReady(){
   createScoreboard();
   createTimerboard();
   setHeadersAtRandom();
-  textboxOnFocus();
-  textboxOnFocusout();
   openAreYouReady();
+}
+
+//ゲーム開始
+function gameStart() {
+  $(main).find('input').eq(0).focus();
+  setInterval(function() {
+    playingTime++;
+    updateTimer();
+    if (isAddHeaderTime()) {
+      addHeaderAtRandom();
+    }
+  }, 1000);
+
 }
 
 function openAreYouReady() {
@@ -43,7 +55,7 @@ function createTable() {
       } else if (i === maxColumnNum+1 || j === maxRowNum+1) {
         td.attr('class', 'overcell');
       } else {
-        td.html('<input type="text" maxlength="2">');
+        td.html(inputCell);
       }
 
       tr.append(td);
@@ -99,7 +111,7 @@ function focusHorizontalCell(target, direction) {
   while(true) {
     if (nextRow === index[0]) {
       break;
-    } else if (nextRow >= getRowNum()) {
+    } else if (nextRow > getRowNum()) {
       nextRow = direction;
     } else if (nextRow <= 0) {
       nextRow = getRowNum() + direction;
@@ -130,7 +142,7 @@ function focusVerticalCell(target, direction) {
   while(true) {
     if (nextColumn === index[1]) {
       break;
-    } else if (nextColumn >= getColumnNum()) {
+    } else if (nextColumn > getColumnNum()) {
       nextColumn = direction;
     } else if (nextColumn <= 0) {
       nextColumn = getColumnNum() + direction;
@@ -161,28 +173,59 @@ function setHeadersAtRandom() {
   });
 }
 
+//ランダムなヘッダーを末尾に追加
+function addHeaderAtRandom() {
+  var whichHeader = Math.floor(Math.random()*2);  //行と列どちらのヘッダーか
+  var header = Math.floor(Math.random()*10);  //ヘッダーの値
+
+  if (whichHeader == 0) {
+    var tr = $('<tr>');
+    for (var i = 0, columnNum = getColumnNum(); i < columnNum+2; i++) {
+      var td = $('<td>');
+      if (i == 0) {
+        td.attr('class', 'row-header');
+        td.text(header);
+      } else if (i == columnNum+1) {
+        td.attr('class', 'overcell');
+      } else {
+        td.html(inputCell);
+      }
+      tr.append(td);
+    }
+    $(main).find('tr').last().before(tr);
+  } else {
+    var rowNum = getRowNum();
+    $(main).find('tr').each(function(i) {
+      var td = $('<td>');
+      if (i == 0) {
+        td.attr('class', 'column-header');
+        td.text(header);
+      } else if (i == rowNum+1) {
+        td.attr('class', 'overcell');
+      } else {
+        td.html(inputCell);
+      }
+      $(this).find('td').last().before(td);
+    });
+  }
+}
+
 //テキストボックスのフォーカス時
-function textboxOnFocus() {
-  var textbox = $(main).find('input');
-  textbox.focus(function(e) {
-    delValue(e.target);
-    delAnswering();
-    answering(e.target);
-  });
+function textboxOnFocus(target) {
+  delValue(target);
+  delAnswering();
+  answering(target);
 }
 
 //テキストボックスのアンフォーカス時
-function textboxOnFocusout() {
-  var textbox = $(main).find('input');
-  textbox.focusout(function(e) {
-    if ( solve(e.target) ) {
-      score += scoreInterval;
-      updateScore();
-      if (isBonusTime()) {
-        readingBarcode();
-      }
+function textboxOnFocusout(target) {
+  if ( solve(target) ) {
+    score += scoreInterval;
+    updateScore();
+    if (isBonusTime()) {
+      readingBarcode();
     }
-  });
+  }
 }
 
 //解の確認、一列/一行解き終わったか返す
@@ -337,12 +380,12 @@ function getCellsInAColumn(target) {
 
 //行数を返す(ヘッダーを除く)
 function getRowNum() {
-  return $(main).find('tr').length-1;
+  return $(main).find('tr').length-2;
 }
 
 //列数を返す(ヘッダーを除く)
 function getColumnNum() {
-  return $(main).find('tr').eq(0).find('td').length-1;
+  return $(main).find('tr').eq(0).find('td').length-2;
 }
 
 //自動解答

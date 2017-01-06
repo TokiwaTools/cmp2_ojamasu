@@ -15,10 +15,7 @@ $(function($) {
       text: 'GO',
       click: function() {
         $(this).dialog('close');
-        setInterval(function() {
-          playingTime++;
-          updateTimer();
-        }, 1000);
+        gameStart();
       }
     }],
     open: function(event, ui) {

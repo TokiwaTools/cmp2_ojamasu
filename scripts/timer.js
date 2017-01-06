@@ -11,6 +11,7 @@ function createTimerboard() {
   $(timer).append(time);
 }
 
+//時間をアップデート
 function updateTimer() {
   $(timer).find('.time').html(playingTime);
 }

@@ -26,9 +26,9 @@ function createTable() {
         td.attr('class', 'operator');
         td.html(operator);
       } else if (j === 0 && i !== 11) {
-        td.attr('class', 'column-header');
-      } else if (i === 0 && j !== 11) {
         td.attr('class', 'row-header');
+      } else if (i === 0 && j !== 11) {
+        td.attr('class', 'column-header');
       } else if (i === 11 || j === 11) {
         td.attr('class', 'overcell');
       } else {
@@ -149,10 +149,10 @@ function focusVerticalCell(target, direction) {
 
 //ヘッダーにランダムな値をセット
 function setHeadersAtRandom() {
-  $(main).find('.column-header').each(function() {
+  $(main).find('.row-header').each(function() {
     $(this).text(Math.floor(Math.random()*10));
   });
-  $(main).find('.row-header').each(function() {
+  $(main).find('.column-header').each(function() {
     $(this).text(Math.floor(Math.random()*10));
   });
 }
@@ -286,8 +286,8 @@ function getHeaders(target) {
 function getHeadersValues(target) {
   var values = [];
   var headers = getHeaders(target);
-  values.push( $(main).find('.column-header').eq(headers[1]-1).text() );
-  values.push( $(main).find('.row-header').eq(headers[0]-1).text() );
+  values.push( $(main).find('.row-header').eq(headers[1]-1).text() );
+  values.push( $(main).find('.column-header').eq(headers[0]-1).text() );
   return values;
 }
 

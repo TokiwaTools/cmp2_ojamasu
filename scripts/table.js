@@ -17,6 +17,7 @@ function gameReady() {
   setLimitingKeys();
   createScoreboard();
   createTimerboard();
+  $('.statusboard').show();
   setHeadersAtRandom();
   openAreYouReady();
 }

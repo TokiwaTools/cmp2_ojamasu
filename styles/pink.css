@@ -1,18 +1,8 @@
 body {
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Osaka, arial, helvetica, sans-serif;
 
-//濃い
-	background: -moz-linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ff99cc 25%, #ff99cc 50%,
-        #ffbfdf 50%, #ffbfdf 75%, #ff99cc 75%,#ff99cc);
-    background: -webkit-linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ff99cc 25%, #ff99cc 50%,
-        #ffbfdf 50%, #ffbfdf 75%, #ff99cc 75%,#ff99cc);
-    background: linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ff99cc 25%, #ff99cc 50%,
-        #ffbfdf 50%, #ffbfdf 75%, #ff99cc 75%,#ff99cc);
-    -moz-background-size: 20px 20px;
-    -webkit-background-size: 20px 20px;
-    background-size: 20px 20px;
+/*背景*/
 
-//薄い
 	background: -moz-linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ffb2d8 25%, #ffb2d8 50%,
         #ffbfdf 50%, #ffbfdf 75%, #ffb2d8 75%,#ffb2d8);
     background: -webkit-linear-gradient(left top, #ffbfdf, #ffbfdf 25%, #ffb2d8 25%, #ffb2d8 50%,
@@ -22,7 +12,6 @@ body {
     -moz-background-size: 20px 20px;
     -webkit-background-size: 20px 20px;
     background-size: 20px 20px;
-
 
 }
 
@@ -99,17 +88,24 @@ body {
 /*演算子セル*/
 .mainTable .operator {
   font-weight: bold;
+  color:#000066;
+   background-size: cover;
+  background: url(../images/box_3.png);
 }
 
 /*行ヘッダーセル*/
 .mainTable .row-header {
-  color: #3674ff;
+  color: #000066;
+  background: url(../images/box_2.png);
 }
+
 
 /*列ヘッダーセル*/
 .mainTable .column-header {
-  color: #33b147;
+  color: #000066;
+   background: url(../images/box_1.png);
 }
+
 
 /*オーバーセル (11行・11列目)*/
 /*廃止するかも*/
@@ -121,3 +117,29 @@ body {
 .mainTable .answering {
   background: #ffdb7e;
 }
+
+/*解いているセルのテキストボックス*/
+.mainTable input:focus {
+  background: #ff3399;
+  color: #FFF;
+}
+
+/*名前入力ボックス*/
+.namebox {
+//border: 1px solid #ff9933;
+  background:#FFF2F8;
+  color:#505050;
+}
+
+/*名前入力決定ボタン*/
+.nameboxButton{
+  background:#ffd8eb;
+  color:#505050;
+
+}
+.nameboxButton:hover{
+  background:#FF7FBF;
+  color:#505050;
+
+}
+

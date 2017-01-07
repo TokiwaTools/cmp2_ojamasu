@@ -30,22 +30,24 @@ function readingBarcode() {
   $('.bonustimeDialog').dialog('open');
   $('.firstBarcode').focus();
   $('.firstBarcode').keydown(function(e) {
-    keyCheck(e.keyCode);
-    if (reading.end()) {
-      reading.close();
-      getBarcodeTime = false;
-    } else if (reading.endFirst()) {
-      $('.secondBarcode').focus();
+    if (e.keyCode == 9) {
+      if (reading.end()) {
+        reading.close();
+        getBarcodeTime = false;
+      }
+      return;
     }
+    keyCheck(e.keyCode);
   });
   $('.secondBarcode').keydown(function(e) {
-    keyCheck(e.keyCode);
-    if (reading.end()) {
-      reading.close();
-      getBarcodeTime = false;
-    } else if (reading.endSecond()) {
-      $('.firstBarcode').focus();
+    if (e.keyCode == 9) {
+      if (reading.end()) {
+        reading.close();
+        getBarcodeTime = false;
+      }
+      return;
     }
+    keyCheck(e.keyCode);
   });
 
   reading.clear();

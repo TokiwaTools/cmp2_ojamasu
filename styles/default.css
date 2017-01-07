@@ -118,3 +118,35 @@ h2 {
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
   float: none;
 }
+
+/*ランキングのタイトル*/
+.ranking{
+	color: #9237FF;
+	font-size: 200px;
+}
+
+/*ランキング*/
+.rankingTable{
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+}
+
+/*ランキングのヘッダー*/
+.rankingTable th{
+	background: #eee;
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border:1px solid #ccc;
+}
+
+/*ランキングのセル*/
+.rankingTable td{
+	background: white;
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	border:1px solid #ccc;
+}

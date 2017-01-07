@@ -1,4 +1,5 @@
 $(function($) {
+  $('.statusboard').hide();
   $('.bonustimeDialog').dialog({
     autoOpen: false,
     width: 500,
@@ -35,7 +36,7 @@ $(function($) {
       }
     }],
     close: function(event, ui) {
-      window.location.href = './result.php';
+      window.location.href = './ranking.php';
     }
   });
 });

@@ -31,10 +31,14 @@ body {
 /*タイトル画像*/
 .title{
 	float:none;
-	margin:auto;
+	margin: 1em auto;
 	text-align: center;
-	padding: 10px;
 }
+
+.title img {
+	width: 30%;
+}
+
 .message{
 	float:none;
 	margin:auto;

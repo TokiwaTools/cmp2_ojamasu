@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Result</title>
 	<link rel="stylesheet" type="text/css" href="styles/default.css">
+	<link rel="stylesheet" type="text/css" href="styles/pink.css">
 </head>
 <?php
 	$pdo = new PDO("sqlite:userRank.sqlite");
@@ -12,10 +13,11 @@
 ?>
 <body>
 	<div class="title">
-  		<img src="img/title.png" width="300px">
-  		<img src="img/icon.png" width="40px"><br>
-  	</div>
-  	<h2　class="ranking">ランキング</h2>
+		<img src="images/title2.png">
+	</div>
+
+	<h2 class="ranking">ランキング</h2>
+
 	<?php
 		echo "<table class='rankingTable'>";
 		echo "<tr><th>rank</th><th>name</th><th>score</th><th>time</th>";

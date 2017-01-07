@@ -89,7 +89,7 @@ body {
 .mainTable .operator {
   font-weight: bold;
   color:#000066;
-  background-size: cover;
+   background-size: cover;
   background: url(../images/box_3.png);
 }
 
@@ -143,45 +143,3 @@ body {
 
 }
 
-.statusboard {
-  //float:none;
-  text-align: center;
-  //width:50%;
-  color:#000066;
-    //display: inline-block;
-}
-
-.timerboard {
-  //text-align: center;
-  width: 200px;
-  margin: 1% 3%;
-  display: inline-block;
-  background:#FFCCE5;
-  border: 3px solid #ff99cc;
-  border-radius: 15px;
-
-}
-
-.scoreboard {
-  //text-align: center;
-  width: 200px;
-  margin:1% 3%;
-  display: inline-block;
-  background:#FFCCE5;
-  border: 3px solid #ff99cc;
-  border-radius: 15px;
-
-}
-
-/*スコア*/
-.score {
-  //text-align: center;
-  font-size: 1.6em;
-
-}
-
-/*タイム*/
-.time {
-  //text-align: center;
-  font-size: 1.5em;
-}

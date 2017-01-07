@@ -8,7 +8,7 @@ var inputCell = '<input type="text" maxlength="2" onFocus="textboxOnFocus(this)"
 
 var playingTime = 0;  //プレイ時間
 
-//ゲーム準備
+//ゲームの準備
 function gameReady() {
   main = $('.mainTable');
   scoreboard = $('.scoreboard');
@@ -24,31 +24,16 @@ function gameReady() {
 //ゲーム開始
 function gameStart() {
   $(main).find('input').eq(0).focus();
-  var timer = setInterval(function() {
+  setInterval(function() {
     playingTime++;
     updateTimer();
     if (isAddHeaderTime()) {
-      var maxHeaderName = getMaxHeaderName();
-      if (maxHeaderName != null) {
-        var overHeader = getOverHeader(maxHeaderName);
-        setHeaderOnOvercellAtRandom(overHeader);
-        clearInterval(timer);
-        gameOver();
-      } else {
-        addHeaderAtRandom();
-      }
+      addHeaderAtRandom();
     }
   }, 1000);
+
 }
 
-//ゲームオーバー
-function gameOver() {
-  $('.gameoverDialog').dialog('open');
-  $('.gameoverDialog .score').text('スコア: ' + score);
-  $('.gameoverDialog .time').text('プレイ時間: ' + playingTime + '秒');
-}
-
-//準備はいい？画面を開く
 function openAreYouReady() {
   $('.areyouready').dialog('open');
 }
@@ -188,16 +173,9 @@ function setHeadersAtRandom() {
   });
 }
 
-//オーバーセルにランダムなヘッダーをセット
-function setHeaderOnOvercellAtRandom(target) {
-  var header = Math.floor(Math.random()*10);
-  $(target).text(header);
-}
-
 //ランダムなヘッダーを末尾に追加
 function addHeaderAtRandom() {
   var whichHeader = Math.floor(Math.random()*2);  //行と列どちらのヘッダーか
-  console.log(whichHeader);
   var header = Math.floor(Math.random()*10);  //ヘッダーの値
 
   if (whichHeader == 0) {
@@ -248,26 +226,6 @@ function textboxOnFocusout(target) {
       readingBarcode();
     }
   }
-}
-
-//ヘッダー名からオーバーヘッダーの要素を取得する
-function getOverHeader(name) {
-  if (name == 'row') {
-    return $(main).find('tr').last().find('.overcell').first();
-  } else if (name == 'column') {
-    return $(main).find('tr').first().find('.overcell').last();
-  }
-  return null;
-}
-
-//どちらのヘッダーが埋まっているかヘッダー名で返す
-function getMaxHeaderName() {
-  if (maxRowNum <= getRowNum()) {
-    return 'row';
-  } else if (maxColumnNum <= getColumnNum()) {
-    return 'column'
-  }
-  return null;
 }
 
 //解の確認、一列/一行解き終わったか返す

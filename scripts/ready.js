@@ -35,7 +35,7 @@ $(function($) {
       }
     }],
     close: function(event, ui) {
-
+      window.location.href = './result.php';
     }
   });
 });

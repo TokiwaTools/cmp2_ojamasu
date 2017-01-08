@@ -1,13 +1,7 @@
 var name;
 
 $(function($) {
-  $.getJSON('config.json', function(json) {
-    operator = json.table.operator;
-    maxRowNum = json.table.max_row;
-    maxColumnNum = json.table.max_column;
-    addHeaderInterval = json.table.add_header_interval;
-    scanInterval = json.scantime.interval;
-  });
+  getConfig('./config.json');
   $('.statusboard').hide();
   $('.nameDialog').dialog({
     autoOpen: false,

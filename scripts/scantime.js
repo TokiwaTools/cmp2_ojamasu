@@ -1,5 +1,6 @@
 //スキャンタイム
 var scanInterval;  //スキャンタイムの間隔
+var scanLimit;     //制限時間
 
 //スキャンタイムかどうか
 function isScanTime() {

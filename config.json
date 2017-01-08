@@ -3,10 +3,22 @@
     "operator": "+",
     "max_row": 10,
     "max_column": 10,
-    "add_header_interval": 20
+    "add_header_interval": {
+      "easy": 30,
+      "normal": 20,
+      "hard": 14
+    }
   },
   "scantime": {
-    "interval": 200,
-    "limit_time": 8
+    "interval": {
+      "easy": 400,
+      "normal": 300,
+      "hard": 200
+    },
+    "limit_time": {
+      "easy": 15,
+      "normal": 10,
+      "hard": 5
+    }
   }
 }

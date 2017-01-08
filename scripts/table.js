@@ -9,9 +9,43 @@ var inputCell = '<input type="text" maxlength="2" onFocus="textboxOnFocus(this)"
 var playingTime = 0;  //プレイ時間
 var difficulty;   //難易度
 
+var diffConfig = {};  //難易度別の設定
+
+function getConfig(url) {
+  $.getJSON(url, function(json) {
+    operator = json.table.operator;
+    maxRowNum = json.table.max_row;
+    maxColumnNum = json.table.max_column;
+    diffConfig.addHeaderInterval = json.table.add_header_interval;
+    diffConfig.scanInterval = json.scantime.interval;
+    diffConfig.scanLimit = json.scantime.limit_time;
+  });
+}
+
+function setConfigByDiff(diff) {
+  switch (diff) {
+    case 'normal':
+      addHeaderInterval = diffConfig.addHeaderInterval.normal;
+      scanInterval = diffConfig.scanInterval.normal;
+      scanLimit = diffConfig.scanLimit.normal;
+      break;
+    case 'hard':
+      addHeaderInterval = diffConfig.addHeaderInterval.hard;
+      scanInterval = diffConfig.scanInterval.hard;
+      scanLimit = diffConfig.scanLimit.hard;
+      break;
+    default:
+      addHeaderInterval = diffConfig.addHeaderInterval.easy;
+      scanInterval = diffConfig.scanInterval.easy;
+      scanLimit = diffConfig.scanLimit.easy;
+      break;
+  }
+}
+
 //ゲーム準備
 function gameReady(diff) {
   $('.difficultyDialog').dialog('close');
+  setConfigByDiff(diff);
   score = 0;
   playingTime = 0;
   diff = difficulty;

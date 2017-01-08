@@ -8,7 +8,16 @@
     <link type="text/css" rel="stylesheet" href="styles/pink.css">
     <script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="scripts/ready.js"></script>
+    <script type="text/javascript" id="script" src="scripts/ready.js" username=
+    <?php
+      if (isset($_POST['name'])) {
+        $name = htmlspecialchars($_POST['name']);
+        echo $name;
+      } else {
+        echo 'false';
+      }
+    ?>
+    ></script>
     <!--<script type="text/javascript" src="scripts/whatsyourname.js"></script>-->
     <!--<script type="text/javascript" src="scripts/question.js"></script>-->
     <script type="text/javascript" src="scripts/score.js"></script>
@@ -26,14 +35,6 @@
 
 
     <div class="dialog"></div>
-
-    <div style="display:none" class="name">
-      <?php
-        if (isset($_POST['name'])) {
-          echo htmlspecialchars($_POST['name']);
-        }
-      ?>
-    </div>
 
     <form>
       <table class="mainTable" border="1" cellspacing="0"></table>

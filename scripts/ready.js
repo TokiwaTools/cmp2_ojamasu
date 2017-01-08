@@ -1,4 +1,4 @@
-var name;
+var name; //ユーザー名
 
 $(function($) {
   getConfig('./config.json');
@@ -81,7 +81,7 @@ $(function($) {
         $(this).dialog('close');
       },
       'ランキングを見る': function() {
-        window.location.href = './ranking.php';
+        window.location.href = './ranking.php?name=' + name + '&score=' + score + '&time=' + playingTime;
       }
     },
     close: function(event, ui) {
@@ -89,10 +89,10 @@ $(function($) {
     }
   });
 
-  if ($('.name').text().trim() != '') {
-    name = $('.name').text().trim();
-    $('.difficultyDialog').dialog('open');
-  } else {
+  name = $('#script').attr('username');
+  if (name == 'false') {
     $('.nameDialog').dialog('open');
+  } else {
+    $('.difficultyDialog').dialog('open');
   }
 });

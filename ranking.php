@@ -11,6 +11,14 @@
 <?php
 	$pdo = new PDO("sqlite:userRank.sqlite");
 	$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+
+	if (isset($_GET['name']) && isset($_GET['score']) && isset($_GET['time'])) {
+		$name = htmlspecialchars($_GET['name']);
+		$score = htmlspecialchars($_GET['score']);
+		$time = htmlspecialchars($_GET['time']);
+		$st1 = $pdo -> prepare("INSERT INTO userrank(name, score, time) VALUES(?, ?, ?)");
+		$st1 -> execute(array($name, $score, $time));
+	}
 	//レコード10行分まで表示、scoreで自動ソート
 	$st = $pdo->query("SELECT * FROM userrank order by score desc limit 10;");
 ?>

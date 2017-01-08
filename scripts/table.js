@@ -10,6 +10,8 @@ var playingTime = 0;  //プレイ時間
 
 //ゲーム準備
 function gameReady() {
+  score = 0;
+  playingTime = 0;
   main = $('.mainTable');
   scoreboard = $('.scoreboard');
   timer = $('.timerboard');
@@ -56,6 +58,7 @@ function openAreYouReady() {
 
 //空のテーブルを作成
 function createTable() {
+  $(main).empty();
   for (var j = 0; j < maxRowNum+2; j++) {
     var tr = $('<tr>');
     for (var i = 0; i < maxColumnNum+2; i++) {

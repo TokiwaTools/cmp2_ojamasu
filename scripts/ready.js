@@ -29,14 +29,16 @@ $(function($) {
     autoOpen: false,
     modal: true,
     width: 500,
-    buttons: [{
-      text: 'ランキングを見る',
-      click: function() {
+    buttons: {
+      'リトライ': function() {
         $(this).dialog('close');
+      },
+      'ランキングを見る': function() {
+        window.location.href = './ranking.php';
       }
-    }],
+    },
     close: function(event, ui) {
-      window.location.href = './ranking.php';
+      gameReady();
     }
   });
 });

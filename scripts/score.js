@@ -6,6 +6,7 @@ var scoreInterval = 100;//スコアの増減間隔
 
 //スコアボードの作成
 function createScoreboard() {
+  $(scoreboard).empty();
   var title = $('<h2>');
   title.html('Scoreboard');
   $(scoreboard).append(title);

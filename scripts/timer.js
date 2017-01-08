@@ -4,6 +4,7 @@ var addHeaderInterval = 10;  //ヘッダー追加の間隔(秒)
 
 //タイマーボードの作成
 function createTimerboard() {
+  $(timer).empty();
   var title = $('<h2>');
   title.text('Time');
   $(timer).append(title);

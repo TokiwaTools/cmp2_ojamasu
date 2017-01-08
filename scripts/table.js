@@ -1,9 +1,9 @@
 var main;         //テーブルの要素
 
 //テーブル
-var operator = '+';     //演算子 (+, *)
-var maxRowNum = 10;     //最大行数
-var maxColumnNum = 10;  //最大列数
+var operator;     //演算子 (+, *)
+var maxRowNum;     //最大行数
+var maxColumnNum;  //最大列数
 var inputCell = '<input type="text" maxlength="2" onFocus="textboxOnFocus(this)" onBlur="textboxOnFocusout(this)">';  //セル
 
 var playingTime = 0;  //プレイ時間
@@ -251,7 +251,7 @@ function textboxOnFocusout(target) {
   if ( solve(target) ) {
     score += scoreInterval;
     updateScore();
-    if (isBonusTime()) {
+    if (isScanTime()) {
       readingBarcode();
     }
   }

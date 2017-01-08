@@ -1,10 +1,9 @@
-//ボーナスタイム
-var bonustime = false;    //ボーナスタイム
-var bonusInterval = 200;  //ボーナスタイムの間隔
+//スキャンタイム
+var scanInterval;  //スキャンタイムの間隔
 
-//ボーナスタイムかどうか
-function isBonusTime() {
-  return (score%bonusInterval == 0);
+//スキャンタイムかどうか
+function isScanTime() {
+  return (score%scanInterval == 0);
 }
 
 //バーコードリーダーからバーコードを読み込む

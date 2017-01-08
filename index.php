@@ -10,10 +10,10 @@
     <script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
     <script type="text/javascript" src="scripts/ready.js"></script>
     <!--<script type="text/javascript" src="scripts/whatsyourname.js"></script>-->
-    <script type="text/javascript" src="scripts/question.js"></script>
+    <!--<script type="text/javascript" src="scripts/question.js"></script>-->
     <script type="text/javascript" src="scripts/score.js"></script>
     <script type="text/javascript" src="scripts/timer.js"></script>
-    <script type="text/javascript" src="scripts/bonus.js"></script>
+    <script type="text/javascript" src="scripts/scantime.js"></script>
     <script type="text/javascript" src="scripts/table.js"></script>
     <script type="text/javascript" src="scripts/barcode.js"></script>
     <title>おじゃマス計算</title>

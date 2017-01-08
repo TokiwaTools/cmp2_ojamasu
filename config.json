@@ -1,0 +1,12 @@
+{
+  "table": {
+    "operator": "+",
+    "max_row": 10,
+    "max_column": 10,
+    "add_header_interval": 20
+  },
+  "scantime": {
+    "interval": 200,
+    "limit_time": 8
+  }
+}

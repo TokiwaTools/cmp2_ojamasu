@@ -7,11 +7,14 @@ var maxColumnNum = 10;  //最大列数
 var inputCell = '<input type="text" maxlength="2" onFocus="textboxOnFocus(this)" onBlur="textboxOnFocusout(this)">';  //セル
 
 var playingTime = 0;  //プレイ時間
+var difficulty;   //難易度
 
 //ゲーム準備
-function gameReady() {
+function gameReady(diff) {
+  $('.difficultyDialog').dialog('close');
   score = 0;
   playingTime = 0;
+  diff = difficulty;
   main = $('.mainTable');
   scoreboard = $('.scoreboard');
   timer = $('.timerboard');
@@ -47,8 +50,8 @@ function gameStart() {
 //ゲームオーバー
 function gameOver() {
   $('.gameoverDialog').dialog('open');
-  $('.gameoverDialog .score').text('スコア: ' + score);
-  $('.gameoverDialog .time').text('プレイ時間: ' + playingTime + '秒');
+  $('.gameoverDialog .scoreResult').text('スコア: ' + score);
+  $('.gameoverDialog .timeResult').text('プレイ時間: ' + playingTime + '秒');
 }
 
 //準備はいい？画面を開く

@@ -9,6 +9,10 @@ h2 {
   text-align: center;
 }
 
+.dialog {
+  margin: 2em auto;
+}
+
 /*テーブル*/
 .mainTable {
   display: none;

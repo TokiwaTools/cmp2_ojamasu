@@ -9,7 +9,7 @@
     <script type="text/javascript" src="scripts/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
     <script type="text/javascript" src="scripts/ready.js"></script>
-    <script type="text/javascript" src="scripts/whatsyourname.js"></script>
+    <!--<script type="text/javascript" src="scripts/whatsyourname.js"></script>-->
     <script type="text/javascript" src="scripts/question.js"></script>
     <script type="text/javascript" src="scripts/score.js"></script>
     <script type="text/javascript" src="scripts/timer.js"></script>
@@ -24,9 +24,15 @@
       <img src="images/title2.png">
     </div>
 
-  	<p id="message"></p>
 
-    <div class="choices">
+    <div class="dialog"></div>
+
+    <div style="display:none" class="name">
+      <?php
+        if (isset($_POST['name'])) {
+          echo htmlspecialchars($_POST['name']);
+        }
+      ?>
     </div>
 
     <form>
@@ -36,9 +42,24 @@
     <div class="statusboard">
 	    <div class="timerboard"></div>
 	    <div class="scoreboard"></div>
-	</div>
+	  </div>
 
-    <div class="areyouready" title="準備はOK?"></div>
+    <div class="nameDialog" title="あなたのお名前は？">
+      <form class="nameDialogForm" method="post">
+        <input type="text" name="name" class="namebox" value="名無しさん" class="text ui-widget-content ui-corner-all">
+      </form>
+    </div>
+
+    <div class="difficultyDialog" title="どのレベルでプレイする？">
+      <form>
+        <input type="button" value="激甘" id="hidari" onclick="gameReady('easy')">
+        <input type="button" value="中辛" id="migi" onclick="gameReady('normal')">
+      </form>
+    </div>
+
+    <div class="areyouready" title="準備はOK？"></div>
+
+    <div class="tutorialDialog" title="チュートリアル"></div>
 
     <div class="bonustimeDialog" title="ボーナスタイム！">
       <p>バーコードリーダーでピッ</p>
@@ -49,8 +70,8 @@
     </div>
 
     <div class="gameoverDialog" title="ゲームオーバー">
-      <p class="score"></p>
-      <p class="time"></p>
+      <p class="scoreResult"></p>
+      <p class="timeResult"></p>
     </div>
   </body>
 </html>

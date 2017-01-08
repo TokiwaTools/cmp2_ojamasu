@@ -73,8 +73,6 @@ body {
   height: 1.6em;
   text-align: center;
   padding: 0px;
-  //background:#ffd8eb;
-
 }
 
 /*テキストボックス*/
@@ -151,33 +149,39 @@ body {
 }
 
 .timerboard {
-  width: 200px;
-  margin: 1% 3%;
+  width: 180px;
+  height:100px;
+  margin: -20px 3%;
   display: inline-block;
   background:#FFCCE5;
   border: 3px solid #ff99cc;
   border-radius: 15px;
+  font-size: 0.9em;
 
 }
 
 .scoreboard {
-  width: 200px;
-  margin:1% 3%;
+  width: 180px;
+  height: 100px;
+  margin: -20px 3%;
   display: inline-block;
   background:#FFCCE5;
   border: 3px solid #ff99cc;
   border-radius: 15px;
+  font-size: 0.9em;
 }
 
+
 /*スコア*/
-.score {
-  font-size: 1.6em;
+.score{
+  margin-top:-20px;
 }
 
 /*タイム*/
-.time {
-  font-size: 1.5em;
+.time{
+  margin-top:-20px;
 }
+
 
 .ranking{
 	float:none;
@@ -193,15 +197,16 @@ body {
 	text-align: center;
 	line-height: 1.5;
 	width: 60%;
+	background: #FFBFDF;
 }
 
 .rankingTable th{
-	background: #ff99cc;
+	background: url(../images/box_5.png);
 	width: 150px;
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
-	border:1px solid #000066;
+	border:2px solid #000066;
 	color:#000066;
 }
 
@@ -210,5 +215,5 @@ body {
 	width: 350px;
 	padding: 10px;
 	vertical-align: top;
-	border:1px solid #000066;
+	border:2px solid #000066;
 }

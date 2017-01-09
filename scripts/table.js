@@ -64,6 +64,7 @@ function gameReady(diff) {
 //ゲーム開始
 function gameStart() {
   $(main).find('input').eq(0).focus();
+  addHeader = true;
   var timer = setInterval(function() {
     playingTime++;
     updateTimer();
@@ -286,6 +287,7 @@ function textboxOnFocusout(target) {
     score += scoreInterval;
     updateScore();
     if (isScanTime()) {
+      addHeader = false;
       readingBarcode();
     }
   }

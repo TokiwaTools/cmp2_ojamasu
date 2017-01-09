@@ -34,6 +34,7 @@ function readingBarcode() {
       if (reading.end()) {
         reading.close();
         getBarcodeTime = false;
+        addHeader = true;
       }
       return;
     }
@@ -44,6 +45,7 @@ function readingBarcode() {
       if (reading.end()) {
         reading.close();
         getBarcodeTime = false;
+        addHeader = true;
       }
       return;
     }

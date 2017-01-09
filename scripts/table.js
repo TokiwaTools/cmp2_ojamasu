@@ -19,6 +19,8 @@ function getConfig(url) {
     diffConfig.addHeaderInterval = json.table.add_header_interval;
     diffConfig.scanInterval = json.scantime.interval;
     diffConfig.scanLimit = json.scantime.limit_time;
+    bonusEvents = json.events.bonus;
+    ojamaEvents = json.events.ojama;
   });
 }
 
@@ -288,6 +290,9 @@ function textboxOnFocusout(target) {
     updateScore();
     if (isScanTime()) {
       addHeader = false;
+      scanTime = scanLimit;
+      setLimitTimer();
+      updateLimitMessage();
       readingBarcode();
     }
   }

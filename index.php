@@ -23,6 +23,7 @@
     <script type="text/javascript" src="scripts/score.js"></script>
     <script type="text/javascript" src="scripts/timer.js"></script>
     <script type="text/javascript" src="scripts/scantime.js"></script>
+    <script type="text/javascript" src="scripts/eventtime.js"></script>
     <script type="text/javascript" src="scripts/table.js"></script>
     <script type="text/javascript" src="scripts/barcode.js"></script>
     <title>おじゃマス計算</title>
@@ -33,8 +34,12 @@
       <img src="images/title2.png">
     </div>
 
-
     <div class="dialog"></div>
+
+    <div class="eventTimeMessage">
+      <h2 class="eventState"></h2>
+      <p class="eventContent"></p>
+    </div>
 
     <form>
       <table class="mainTable" border="1" cellspacing="0"></table>
@@ -62,8 +67,9 @@
 
     <div class="tutorialDialog" title="チュートリアル"></div>
 
-    <div class="bonustimeDialog" title="ボーナスタイム！">
+    <div class="bonustimeDialog" title="スキャンタイム！">
       <p>バーコードリーダーでピッ</p>
+      <p class="limitTimeMessage"></p>
       <form>
         <input type="number" class="firstBarcode" value="" max="13">
         <input type="number" class="secondBarcode" value="" max="13">

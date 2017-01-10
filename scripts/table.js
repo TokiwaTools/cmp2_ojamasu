@@ -362,10 +362,11 @@ function solve(target) {
   return false;
 }
 
-//不正解のセルのみ値を削除する
+//不正解のセルのみ値とクラスを削除する
 function delValue(target) {
   if ( $(target).attr('class') === 'notequal' ) {
     $(target).val('');
+    $(target).removeClass();
   }
 }
 
@@ -389,7 +390,7 @@ function answering(target) {
     $(this).attr('class', 'answering');
   });
   $(main).find('tr').each(function() {
-    if ($(this).find('input').attr('class') === 'notequal') {
+    if ($(this).find('input').eq(headers[1]-1).attr('class') === 'notequal') {
       return true;
     }
     $(this).find('input').eq(headers[1]-1).attr('class', 'answering');

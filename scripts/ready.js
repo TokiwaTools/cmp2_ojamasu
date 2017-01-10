@@ -85,7 +85,7 @@ function setDialogsOption() {
   $('.tutorialDialog').dialog({
     autoOpen: false,
     modal: true,
-    width: '60%',
+    width: '80%',
     position: {
       my: 'center',
       at: 'center',
@@ -95,6 +95,12 @@ function setDialogsOption() {
       'OK': function() {
         $(this).dialog('close');
       }
+    },
+    open : function() {
+      $('.pv').get(0).play();
+    },
+    close: function() {
+      $('.pv').get(0).pause();
     }
   });
   $('.gameoverDialog').dialog({

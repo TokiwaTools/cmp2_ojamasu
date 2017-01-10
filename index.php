@@ -64,13 +64,14 @@
       <form>
         <input type="button" value="激甘" id="hidari" onclick="gameReady('easy')">
         <input type="button" value="中辛" id="migi" onclick="gameReady('normal')">
+        <input type="button" value="気まぐれ" id="migi" onclick="gameReady('kimagure')">
       </form>
     </div>
 
     <div class="areyouready" title="準備はOK？"></div>
 
     <div class="tutorialDialog" title="チュートリアル">
-      <iframe width="100%" height="480" src="https://www.youtube.com/embed/NTj33EWSn1I" frameborder="0" allowfullscreen></iframe>
+      <video src="pv.webm" class="pv" controls width=100%></video>
     </div>
 
     <div class="bonustimeDialog" title="スキャンタイム！">

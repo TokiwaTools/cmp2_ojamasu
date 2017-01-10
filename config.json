@@ -6,19 +6,22 @@
     "add_header_interval": {
       "easy": 30,
       "normal": 20,
-      "hard": 14
+      "hard": 14,
+      "kimagure": 60
     }
   },
   "scantime": {
     "interval": {
       "easy": 400,
       "normal": 300,
-      "hard": 200
+      "hard": 200,
+      "kimagure": 200
     },
     "limit_time": {
       "easy": 15,
       "normal": 10,
-      "hard": 5
+      "hard": 5,
+      "kimagure": 20
     }
   },
   "events": {

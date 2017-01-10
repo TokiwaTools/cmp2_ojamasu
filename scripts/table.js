@@ -44,6 +44,11 @@ function setConfigByDiff(diff) {
       scanInterval = diffConfig.scanInterval.hard;
       scanLimit = diffConfig.scanLimit.hard;
       break;
+    case 'kimagure':
+      addHeaderInterval = diffConfig.addHeaderInterval.kimagure;
+      scanInterval = diffConfig.scanInterval.kimagure;
+      scanLimit = diffConfig.scanLimit.kimagure;
+      break;
     default:
       addHeaderInterval = diffConfig.addHeaderInterval.easy;
       scanInterval = diffConfig.scanInterval.easy;
@@ -56,6 +61,7 @@ function setConfigByDiff(diff) {
 function gameReady(diff) {
   $('.difficultyDialog').dialog('close');
   setConfigByDiff(diff);
+  $('#ballpaper').hide();
   score = 0;
   playingTime = 0;
   diff = difficulty;

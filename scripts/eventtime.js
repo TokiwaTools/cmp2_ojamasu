@@ -32,8 +32,8 @@ function setEventTimeMessage(event) {
     eventMessage = scanEvents.ojama[eventState].message;
   }
 
-  $('.eventContent').text(eventMessage);
-  causeEvent(eventState);
+  $('.eventContent').text(scanEvents.ojama['blindfold'].message);
+  causeEvent('blindfold');
 
   //console.log(eventMessage);
 }
@@ -104,6 +104,7 @@ function causeEvent(eventState) {
       $('#canvas').attr('width', w);
       $('#canvas').attr('height', h);
       $('#ballpaper').show();
+      addHeaderInterval = 12;
       break;
   }
 }

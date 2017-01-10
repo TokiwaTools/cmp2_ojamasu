@@ -1,0 +1,70 @@
+{
+  "table": {
+    "operator": "+",
+    "max_row": 10,
+    "max_column": 10,
+    "add_header_interval": {
+      "easy": 30,
+      "normal": 20,
+      "hard": 14
+    }
+  },
+  "scantime": {
+    "interval": {
+      "easy": 400,
+      "normal": 300,
+      "hard": 200
+    },
+    "limit_time": {
+      "easy": 15,
+      "normal": 10,
+      "hard": 5
+    }
+  },
+  "events": {
+    "bonus": {
+      "header_less_than_4": {
+        "message": "行/列ヘッダーの値が4以下になった",
+        "frequency": 5
+      },
+      "header_0_or_1": {
+        "message": "行/列ヘッダーの値が0か1になった",
+        "frequency": 3
+      },
+      "header_0": {
+        "message": "行/列ヘッダーの値が全て0になった",
+        "frequency": 1
+      },
+      "long_add_header_interval": {
+        "message": "ヘッダー追加間隔が長くなった",
+        "frequency": 2
+      },
+      "long_scan_time_interval": {
+        "message": "スキャンタイムの発動間隔が長くなった",
+        "frequency": 2
+      }
+    },
+    "ojama": {
+      "header_more_than_5": {
+        "message": "行/列ヘッダーの値が5以上になった",
+        "frequency": 5
+      },
+      "header_5_or_7": {
+        "message": "行/列ヘッダーの値が5か7になった",
+        "frequency": 3
+      },
+      "header_all_9": {
+        "message": "行/列ヘッダーの値が全て9になった",
+        "frequency": 1
+      },
+      "short_add_header_interval": {
+        "message": "ヘッダー追加間隔が短くなった",
+        "frequency": 2
+      },
+      "short_scan_time_interval": {
+        "message": "スキャンタイムの発動間隔が短くなった",
+        "frequency": 2
+      }
+    }
+  }
+}

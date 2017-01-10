@@ -4,14 +4,20 @@ h1 {
 }
 
 h2 {
-  margin: 2em auto;
+  margin: 1em auto;
   margin-bottom: 1em;
+  text-align: center;
+}
+
+.dialog {
+  margin: 2em auto;
   text-align: center;
 }
 
 /*テーブル*/
 .mainTable {
-  margin: auto;
+  display: none;
+  margin: 1em auto;
   table-layout: fixed;
   font-size: 2em;
 }
@@ -82,4 +88,84 @@ h2 {
 .score {
   text-align: center;
   font-size: 1.6em;
+}
+
+/*名前入力ボックス*/
+.namebox {
+
+}
+
+/*名前入力決定ボタン*/
+.nameboxButton {
+
+}
+
+/*ボーナスタイムダイアログ*/
+.bonustimeDialog {
+  text-align: center;
+  margin: auto;
+}
+
+/*準備OK？ダイアログ*/
+.areyouready {
+
+}
+
+/*タイム*/
+.time {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+  text-align: center;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  float: none;
+}
+
+/*ランキングのタイトル*/
+.ranking{
+	color: #9237FF;
+}
+
+/*ランキング*/
+.rankingTable{
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+}
+
+/*ランキングのヘッダー*/
+.rankingTable th{
+	background: #eee;
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border:1px solid #ccc;
+}
+
+/*ランキングのセル*/
+.rankingTable td{
+	background: white;
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+	border:1px solid #ccc;
+}
+
+/*イベントの種類*/
+.eventState {
+  color: #f03e3e;
+}
+
+/*イベントの内容*/
+.eventContent {
+  text-align: center;
+}
+
+.retry {
+  text-align: center;
+  margin: 2em auto;
 }

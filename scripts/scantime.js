@@ -1,7 +1,9 @@
 //スキャンタイム
+var scanning = false; //スキャンタイムかどうか
 var scanInterval;  //スキャンタイムの間隔
 var scanLimit;     //制限時間
 var scanTime;      //スキャン時間
+var scanTimer;     //タイマー
 
 //スキャンタイムかどうか
 function isScanTime() {
@@ -10,10 +12,10 @@ function isScanTime() {
 
 //制限時間をセットする
 function setLimitTimer() {
-  var timer = setInterval(function() {
+  scanTimer = setInterval(function() {
     scanTime--;
     if (scanTime == 0) {
-      clearInterval(timer);
+      clearInterval(scanTimer);
       endScanTime();
       $('.bonustimeDialog').dialog('close');
     }
@@ -28,56 +30,21 @@ function updateLimitMessage() {
 
 //バーコードリーダーからバーコードを読み込む
 function readingBarcode() {
-  var reading = {
-    clear : function() {
-      $('.firstBarcode,.secondBarcode').val('');
-    },
-    endFirst : function() {
-      return $('.firstBarcode').val().length == 13;
-    },
-    endSecond : function() {
-      return $('.secondBarcode').val().length == 13;
-    },
-    end : function() {
-      return this.endFirst() && this.endSecond();
-    },
-    close : function() {
-      $('.bonustimeDialog').dialog('close');
-    }
-  }
-
   $('.bonustimeDialog').dialog('open');
+  $('.firstBarcode').prop("disabled", false);
+  $('.secondBarcode').prop("disabled", false);
   $('.firstBarcode').focus();
-  $('.firstBarcode').keydown(function(e) {
-    if (e.keyCode == 9) {
-      if (reading.end()) {
-        endScanTime();
-        reading.close();
-      }
-      return;
-    }
-    keyCheck(e.keyCode);
-  });
-  $('.secondBarcode').keydown(function(e) {
-    if (e.keyCode == 9) {
-      if (reading.end()) {
-        endScanTime();
-        reading.close();
-      }
-      return;
-    }
-    keyCheck(e.keyCode);
-  });
 
   reading.clear();
-  getBarcodeTime = true;
+  scanning = true;
 }
 
 //スキャンタイム終了時
 function endScanTime() {
+  clearInterval(scanTimer);
   var eventTime = false;
 
-  getBarcodeTime = false;
+  scanning = false;
   addHeader = true;
 
   if (scanTime == 0) {

@@ -19,8 +19,8 @@ function getConfig(url) {
     diffConfig.addHeaderInterval = json.table.add_header_interval;
     diffConfig.scanInterval = json.scantime.interval;
     diffConfig.scanLimit = json.scantime.limit_time;
-    bonusEvents = json.events.bonus;
-    ojamaEvents = json.events.ojama;
+    scanEvents.bonus = json.events.bonus;
+    scanEvents.ojama = json.events.ojama;
   });
 }
 
@@ -241,7 +241,6 @@ function setHeaderOnOvercellAtRandom(target) {
 //ランダムなヘッダーを末尾に追加
 function addHeaderAtRandom() {
   var whichHeader = Math.floor(Math.random()*2);  //行と列どちらのヘッダーか
-  console.log(whichHeader);
   var header = Math.floor(Math.random()*10);  //ヘッダーの値
 
   if (whichHeader == 0) {
@@ -290,6 +289,8 @@ function textboxOnFocusout(target) {
     updateScore();
     if (isScanTime()) {
       addHeader = false;
+      scanning = true;
+      delEventTimeMessage();
       scanTime = scanLimit;
       setLimitTimer();
       updateLimitMessage();
@@ -393,7 +394,7 @@ function isEqual(target) {
   var sum = $(target).val();  //計算結果
   var headers = getHeadersValues(target);  //ヘッダーの値
 
-  console.log(headers.row + ' + ' + headers.column + ' = ' + sum);
+  //console.log(headers.row + ' + ' + headers.column + ' = ' + sum);
   var bool = false;
   switch (operator) {
     case '+':
@@ -403,7 +404,7 @@ function isEqual(target) {
       bool = (sum == headers.row * headers.column );
       break;
   }
-  console.log(bool);
+  //console.log(bool);
   return bool;
 }
 

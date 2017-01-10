@@ -175,7 +175,7 @@ function setLimitingKeys() {
   });
 }
 
-//下のテキストボックスにフォーカスさせる
+//左右のテキストボックスにフォーカスさせる
 function focusHorizontalCell(target, direction) {
   var index = getHeaders(target);
   var nextRow = index[0] + direction;
@@ -187,7 +187,7 @@ function focusHorizontalCell(target, direction) {
     } else if (nextRow > getRowNum()) {
       nextRow = direction;
     } else if (nextRow <= 0) {
-      nextRow = getRowNum() + direction;
+      nextRow = getRowNum() + direction + 1;
     }
 
     var nextBox = $(main).find('tr').eq(nextRow).find('input').eq(index[1]-1);
@@ -206,7 +206,7 @@ function focusHorizontalCell(target, direction) {
   }
 }
 
-//右のテキストボックスにフォーカスさせる
+//上下のテキストボックスにフォーカスさせる
 function focusVerticalCell(target, direction) {
   var index = getHeaders(target);
   var nextColumn = index[1] + direction;
@@ -218,7 +218,7 @@ function focusVerticalCell(target, direction) {
     } else if (nextColumn > getColumnNum()) {
       nextColumn = direction;
     } else if (nextColumn <= 0) {
-      nextColumn = getColumnNum() + direction;
+      nextColumn = getColumnNum() + direction + 1;
     }
     var nextBox = $(main).find('tr').eq(index[0]).find('input').eq(nextColumn-1);
     if ( nextBox.attr('disabled') ) {

@@ -27,7 +27,8 @@ function getConfig(url) {
 
 function setDefaultConfig() {
   addHeaderInterval = diffConfig.addHeaderInterval.difficulty;
-  scanInterval = diffConfig.scantime.interval.difficulty;
+  scanInterval = diffConfig.scanInterval.difficulty;
+  $('#ballpaper').hide();
 }
 
 //難易度によって設定する
@@ -382,7 +383,7 @@ function answering(target) {
     $(this).attr('class', 'answering');
   });
   $(main).find('tr').each(function() {
-    if ($(this).attr('class') === 'notequal') {
+    if ($(this).find('input').attr('class') === 'notequal') {
       return true;
     }
     $(this).find('input').eq(headers[1]-1).attr('class', 'answering');

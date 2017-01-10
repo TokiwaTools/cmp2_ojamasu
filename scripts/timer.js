@@ -1,7 +1,7 @@
 var timer;        //タイマーボードの要素
 
 var addHeader = false;
-var addHeaderInterval = 10;  //ヘッダー追加の間隔(秒)
+var addHeaderInterval;  //ヘッダー追加の間隔(秒)
 
 //タイマーボードの作成
 function createTimerboard() {

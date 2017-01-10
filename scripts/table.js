@@ -11,6 +11,7 @@ var difficulty;   //難易度
 
 var diffConfig = {};  //難易度別の設定
 
+//設定を読み込む
 function getConfig(url) {
   $.getJSON(url, function(json) {
     operator = json.table.operator;
@@ -24,6 +25,12 @@ function getConfig(url) {
   });
 }
 
+function setDefaultConfig() {
+  addHeaderInterval = diffConfig.addHeaderInterval.difficulty;
+  scanInterval = diffConfig.scantime.interval.difficulty;
+}
+
+//難易度によって設定する
 function setConfigByDiff(diff) {
   switch (diff) {
     case 'normal':

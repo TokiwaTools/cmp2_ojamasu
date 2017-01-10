@@ -48,6 +48,11 @@ function setDialogsOption() {
     autoOpen: false,
     width: 500,
     modal: true,
+    position: {
+      my: 'center',
+      at: 'center',
+      of: 'body'
+    },
     open: function(event, ui) {
       $(".ui-dialog-titlebar-close").hide();
     }
@@ -56,6 +61,11 @@ function setDialogsOption() {
     autoOpen: false,
     modal: true,
     width: 300,
+    position: {
+      my: 'center',
+      at: 'center',
+      of: 'body'
+    },
     buttons: {
       'GO': function() {
         $(this).dialog('close');
@@ -74,7 +84,12 @@ function setDialogsOption() {
   $('.tutorialDialog').dialog({
     autoOpen: false,
     modal: true,
-    width: 600,
+    width: '60%',
+    position: {
+      my: 'center',
+      at: 'center',
+      of: 'body'
+    },
     buttons: {
       'OK': function() {
         $(this).dialog('close');
@@ -85,6 +100,11 @@ function setDialogsOption() {
     autoOpen: false,
     modal: true,
     width: 500,
+    position: {
+      my: 'center',
+      at: 'center',
+      of: 'body'
+    },
     buttons: {
       'リトライ': function() {
         $(this).dialog('close');

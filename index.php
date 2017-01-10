@@ -65,7 +65,9 @@
 
     <div class="areyouready" title="準備はOK？"></div>
 
-    <div class="tutorialDialog" title="チュートリアル"></div>
+    <div class="tutorialDialog" title="チュートリアル">
+      <iframe width="100%" height="480" src="https://www.youtube.com/embed/NTj33EWSn1I" frameborder="0" allowfullscreen></iframe>
+    </div>
 
     <div class="bonustimeDialog" title="スキャンタイム！">
       <p>バーコードリーダーでピッ</p>

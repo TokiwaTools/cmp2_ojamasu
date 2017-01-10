@@ -4,34 +4,38 @@ var scanEvents = {};    //イベント
 function setEventTimeMessage(event) {
   $('.eventState').text( event ? 'ボーナスタイム発生中！' : 'おじゃまタイム発生中！' );
   var eventState = '';
-  var eventContent = '';
+  var eventMessage = '';
 
   if (event) {
     var length = 0;
     var array = [];
-    for(var i in scanEvents.bonus){
-      array.push(i);
-      length++;
+    for(var key in scanEvents.bonus){
+      for (var j = 0; j < scanEvents.bonus[key].frequency; j++) {
+        array.push(key);
+        length++;
+      }
     }
     var rand = Math.floor(Math.random()*length);
     eventState = array[rand];
-    eventContent = scanEvents.bonus[eventState];
+    eventMessage = scanEvents.bonus[eventState].message;
   } else {
     var length = 0;
     var array = [];
-    for(var i in scanEvents.ojama){
-      array.push(i);
-      length++;
+    for(var key in scanEvents.ojama) {
+      for (var j = 0; j < scanEvents.ojama[key].frequency; j++) {
+        array.push(key);
+        length++;
+      }
     }
     var rand = Math.floor(Math.random()*length);
     eventState = array[rand];
-    eventContent = scanEvents.ojama[eventState];
+    eventMessage = scanEvents.ojama[eventState].message;
   }
 
-  $('.eventContent').text(eventContent);
+  $('.eventContent').text(eventMessage);
   causeEvent(eventState);
 
-  console.log(eventContent);
+  //console.log(eventMessage);
 }
 
 //イベントを発生させる
@@ -64,6 +68,12 @@ function causeEvent(eventState) {
         $(this).text(value);
       });
       break;
+    case 'long_add_header_interval':
+      addHeaderInterval += 10;
+      break;
+    case 'long_scan_time_interval':
+      scanInterval += 100;
+      break;
     case 'header_more_than_5':
       $(header).each(function() {
         var value = Math.floor(Math.random()*5) + 5;
@@ -81,6 +91,12 @@ function causeEvent(eventState) {
         var value = 9;
         $(this).text(value);
       });
+      break;
+    case 'short_add_header_interval':
+      addHeaderInterval += -5;
+      break;
+    case 'short_scan_time_interval':
+      scanInterval += -100;
       break;
   }
 }

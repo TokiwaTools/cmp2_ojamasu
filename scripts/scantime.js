@@ -42,6 +42,7 @@ function readingBarcode() {
 //スキャンタイム終了時
 function endScanTime() {
   clearInterval(scanTimer);
+  setDefaultConfig();
   var eventTime = false;
 
   scanning = false;

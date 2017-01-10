@@ -64,6 +64,10 @@
       "short_scan_time_interval": {
         "message": "スキャンタイムの発動間隔が短くなった",
         "frequency": 2
+      },
+      "blindfold": {
+        "message": "大変！ボールで見えない！",
+        "frequency": 100
       }
     }
   }

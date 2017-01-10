@@ -27,7 +27,8 @@ function getConfig(url) {
 
 function setDefaultConfig() {
   addHeaderInterval = diffConfig.addHeaderInterval.difficulty;
-  scanInterval = diffConfig.scantime.interval.difficulty;
+  scanInterval = diffConfig.scanInterval.difficulty;
+  $('#ballpaper').hide();
 }
 
 //難易度によって設定する

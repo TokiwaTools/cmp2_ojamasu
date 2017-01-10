@@ -98,6 +98,13 @@ function causeEvent(eventState) {
     case 'short_scan_time_interval':
       scanInterval += -100;
       break;
+    case 'blindfold':
+      var w = $('#ballpaper').width();
+      var h = $('#ballpaper').height();
+      $('#canvas').attr('width', w);
+      $('#canvas').attr('height', h);
+      $('#ballpaper').show();
+      break;
   }
 }
 

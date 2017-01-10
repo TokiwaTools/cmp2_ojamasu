@@ -8,6 +8,7 @@ $(function($) {
   setDialogsOption();
   setNameDialogOption();
   setScanningOption();
+  initBall();
 });
 
 //ダイアログの設定

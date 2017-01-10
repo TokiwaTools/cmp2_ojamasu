@@ -49,5 +49,13 @@
 		}
 		echo "</table>";
 	?>
+	<form action="index.php" class="retry" method="post">
+		<?php
+			if (isset($name)) {
+				echo '<input type="hidden" name="name" value=' . $name . '>';
+			}
+		 ?>
+		<input type="submit" id="hidari" value="リトライ">
+	</form>
 </body>
 </html>

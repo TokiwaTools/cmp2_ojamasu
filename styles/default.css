@@ -163,3 +163,8 @@ h2 {
 .eventContent {
   text-align: center;
 }
+
+.retry {
+  text-align: center;
+  margin: 2em auto;
+}

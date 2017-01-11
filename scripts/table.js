@@ -83,6 +83,8 @@ function gameStart() {
   addHeader = true;
   var timer = setInterval(function() {
     playingTime++;
+    if (addHeader) addHeaderTime++;
+    console.log(addHeaderTime);
     updateTimer();
     if (isAddHeaderTime()) {
       var maxHeaderName = getMaxHeaderName();
@@ -303,6 +305,7 @@ function textboxOnFocusout(target) {
     updateScore();
     if (isScanTime()) {
       addHeader = false;
+      addHeaderTime = 0;
       scanning = true;
       delEventTimeMessage();
       scanTime = scanLimit;

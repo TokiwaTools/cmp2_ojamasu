@@ -28,7 +28,6 @@ function getConfig(url) {
 function setDefaultConfig() {
   addHeaderInterval = diffConfig.addHeaderInterval.difficulty;
   scanInterval = diffConfig.scanInterval.difficulty;
-  $('#ballpaper').hide();
 }
 
 //難易度によって設定する
@@ -44,11 +43,6 @@ function setConfigByDiff(diff) {
       scanInterval = diffConfig.scanInterval.hard;
       scanLimit = diffConfig.scanLimit.hard;
       break;
-    case 'kimagure':
-      addHeaderInterval = diffConfig.addHeaderInterval.kimagure[0];
-      scanInterval = diffConfig.scanInterval.kimagure;
-      scanLimit = diffConfig.scanLimit.kimagure;
-      break;
     default:
       addHeaderInterval = diffConfig.addHeaderInterval.easy;
       scanInterval = diffConfig.scanInterval.easy;
@@ -61,7 +55,6 @@ function setConfigByDiff(diff) {
 function gameReady(diff) {
   $('.difficultyDialog').dialog('close');
   setConfigByDiff(diff);
-  $('#ballpaper').hide();
   score = 0;
   playingTime = 0;
   diff = difficulty;

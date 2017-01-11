@@ -56,5 +56,5 @@ function endScanTime() {
     eventTime = (firstBarcodeLast + secondBarcodeLast)%2 == 0;
   }
 
-  setEventTimeMessage(false);
+  setEventTimeMessage(eventTime);
 }

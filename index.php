@@ -18,8 +18,6 @@
       }
     ?>
     ></script>
-    <!--<script type="text/javascript" src="scripts/whatsyourname.js"></script>-->
-    <!--<script type="text/javascript" src="scripts/question.js"></script>-->
     <script type="text/javascript" src="scripts/score.js"></script>
     <script type="text/javascript" src="scripts/timer.js"></script>
     <script type="text/javascript" src="scripts/scantime.js"></script>
@@ -30,10 +28,6 @@
     <title>おじゃマス計算</title>
   </head>
   <body>
-    <div id="ballpaper">
-        <canvas id="canvas" width=100% height=100%></canvas>
-    </div>
-
     <div class="title">
       <img src="images/title2.png">
     </div>
@@ -64,7 +58,6 @@
       <form>
         <input type="button" value="激甘" id="hidari" onclick="gameReady('easy')">
         <input type="button" value="中辛" id="migi" onclick="gameReady('normal')">
-        <input type="button" value="気まぐれ" id="migi" onclick="gameReady('kimagure')">
       </form>
     </div>
 

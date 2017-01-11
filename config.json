@@ -6,22 +6,19 @@
     "add_header_interval": {
       "easy": 30,
       "normal": 20,
-      "hard": 14,
-      "kimagure": [60, 12]
+      "hard": 14
     }
   },
   "scantime": {
     "interval": {
       "easy": 400,
       "normal": 300,
-      "hard": 200,
-      "kimagure": 200
+      "hard": 200
     },
     "limit_time": {
       "easy": 15,
       "normal": 10,
-      "hard": 5,
-      "kimagure": 20
+      "hard": 5
     }
   },
   "events": {
@@ -67,10 +64,6 @@
       "short_scan_time_interval": {
         "message": "スキャンタイムの発動間隔が短くなった",
         "frequency": 2
-      },
-      "blindfold": {
-        "message": "大変！ボールで見えない！",
-        "frequency": 100
       }
     }
   }

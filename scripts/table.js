@@ -45,7 +45,7 @@ function setConfigByDiff(diff) {
       scanLimit = diffConfig.scanLimit.hard;
       break;
     case 'kimagure':
-      addHeaderInterval = diffConfig.addHeaderInterval.kimagure;
+      addHeaderInterval = diffConfig.addHeaderInterval.kimagure[0];
       scanInterval = diffConfig.scanInterval.kimagure;
       scanLimit = diffConfig.scanLimit.kimagure;
       break;
@@ -83,6 +83,8 @@ function gameStart() {
   addHeader = true;
   var timer = setInterval(function() {
     playingTime++;
+    if (addHeader) addHeaderTime++;
+    console.log(addHeaderTime);
     updateTimer();
     if (isAddHeaderTime()) {
       var maxHeaderName = getMaxHeaderName();
@@ -254,7 +256,7 @@ function setHeaderOnOvercellAtRandom(target) {
 
 //ランダムなヘッダーを末尾に追加
 function addHeaderAtRandom() {
-  var whichHeader = Math.floor(Math.random()*2);  //行と列どちらのヘッダーか
+  var whichHeader = 0;  //行と列どちらのヘッダーか
   var header = Math.floor(Math.random()*10);  //ヘッダーの値
 
   if (whichHeader == 0) {
@@ -303,6 +305,7 @@ function textboxOnFocusout(target) {
     updateScore();
     if (isScanTime()) {
       addHeader = false;
+      addHeaderTime = 0;
       scanning = true;
       delEventTimeMessage();
       scanTime = scanLimit;

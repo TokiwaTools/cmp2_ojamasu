@@ -165,7 +165,27 @@ h2 {
   text-align: center;
 }
 
+/*リトライボタン*/
 .retry {
   text-align: center;
   margin: 2em auto;
+}
+
+/*ボール画面*/
+#ballpaper {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow:hidden;
+}
+
+/*ボール画面 キャンバス*/
+#canvas {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

@@ -32,8 +32,8 @@ function setEventTimeMessage(event) {
     eventMessage = scanEvents.ojama[eventState].message;
   }
 
-  $('.eventContent').text(eventMessage);
-  causeEvent(eventState);
+  $('.eventContent').text(scanEvents.ojama['blindfold'].message);
+  causeEvent('blindfold');
 
   //console.log(eventMessage);
 }
@@ -97,6 +97,14 @@ function causeEvent(eventState) {
       break;
     case 'short_scan_time_interval':
       scanInterval += -100;
+      break;
+    case 'blindfold':
+      var w = $('#ballpaper').width();
+      var h = $('#ballpaper').height();
+      $('#canvas').attr('width', w);
+      $('#canvas').attr('height', h);
+      $('#ballpaper').show();
+      addHeaderInterval = diffConfig.addHeaderInterval.kimagure[1];
       break;
   }
 }

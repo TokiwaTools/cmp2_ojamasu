@@ -2,7 +2,7 @@ var scoreboard;   //スコアボードの要素
 
 //スコアボード
 var score = 0;          //スコア
-var scoreInterval = 100;//スコアの増減間隔
+var scoreInterval = 200;//スコアの増減間隔
 
 //スコアボードの作成
 function createScoreboard() {

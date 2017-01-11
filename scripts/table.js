@@ -11,7 +11,6 @@ var difficulty;   //難易度
 
 var diffConfig = {};  //難易度別の設定
 
-//設定を読み込む
 function getConfig(url) {
   $.getJSON(url, function(json) {
     operator = json.table.operator;
@@ -25,13 +24,6 @@ function getConfig(url) {
   });
 }
 
-function setDefaultConfig() {
-  addHeaderInterval = diffConfig.addHeaderInterval.difficulty;
-  scanInterval = diffConfig.scanInterval.difficulty;
-  $('#ballpaper').hide();
-}
-
-//難易度によって設定する
 function setConfigByDiff(diff) {
   switch (diff) {
     case 'normal':
@@ -43,11 +35,6 @@ function setConfigByDiff(diff) {
       addHeaderInterval = diffConfig.addHeaderInterval.hard;
       scanInterval = diffConfig.scanInterval.hard;
       scanLimit = diffConfig.scanLimit.hard;
-      break;
-    case 'kimagure':
-      addHeaderInterval = diffConfig.addHeaderInterval.kimagure;
-      scanInterval = diffConfig.scanInterval.kimagure;
-      scanLimit = diffConfig.scanLimit.kimagure;
       break;
     default:
       addHeaderInterval = diffConfig.addHeaderInterval.easy;
@@ -61,7 +48,6 @@ function setConfigByDiff(diff) {
 function gameReady(diff) {
   $('.difficultyDialog').dialog('close');
   setConfigByDiff(diff);
-  $('#ballpaper').hide();
   score = 0;
   playingTime = 0;
   diff = difficulty;
@@ -175,7 +161,7 @@ function setLimitingKeys() {
   });
 }
 
-//左右のテキストボックスにフォーカスさせる
+//下のテキストボックスにフォーカスさせる
 function focusHorizontalCell(target, direction) {
   var index = getHeaders(target);
   var nextRow = index[0] + direction;
@@ -187,7 +173,7 @@ function focusHorizontalCell(target, direction) {
     } else if (nextRow > getRowNum()) {
       nextRow = direction;
     } else if (nextRow <= 0) {
-      nextRow = getRowNum() + direction + 1;
+      nextRow = getRowNum() + direction;
     }
 
     var nextBox = $(main).find('tr').eq(nextRow).find('input').eq(index[1]-1);
@@ -206,7 +192,7 @@ function focusHorizontalCell(target, direction) {
   }
 }
 
-//上下のテキストボックスにフォーカスさせる
+//右のテキストボックスにフォーカスさせる
 function focusVerticalCell(target, direction) {
   var index = getHeaders(target);
   var nextColumn = index[1] + direction;
@@ -218,7 +204,7 @@ function focusVerticalCell(target, direction) {
     } else if (nextColumn > getColumnNum()) {
       nextColumn = direction;
     } else if (nextColumn <= 0) {
-      nextColumn = getColumnNum() + direction + 1;
+      nextColumn = getColumnNum() + direction;
     }
     var nextBox = $(main).find('tr').eq(index[0]).find('input').eq(nextColumn-1);
     if ( nextBox.attr('disabled') ) {
@@ -303,7 +289,6 @@ function textboxOnFocusout(target) {
     updateScore();
     if (isScanTime()) {
       addHeader = false;
-      scanning = true;
       delEventTimeMessage();
       scanTime = scanLimit;
       setLimitTimer();
@@ -362,11 +347,10 @@ function solve(target) {
   return false;
 }
 
-//不正解のセルのみ値とクラスを削除する
+//不正解のセルのみ値を削除する
 function delValue(target) {
   if ( $(target).attr('class') === 'notequal' ) {
     $(target).val('');
-    $(target).removeClass();
   }
 }
 
@@ -390,7 +374,7 @@ function answering(target) {
     $(this).attr('class', 'answering');
   });
   $(main).find('tr').each(function() {
-    if ($(this).find('input').eq(headers[1]-1).attr('class') === 'notequal') {
+    if ($(this).attr('class') === 'notequal') {
       return true;
     }
     $(this).find('input').eq(headers[1]-1).attr('class', 'answering');

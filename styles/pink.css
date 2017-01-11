@@ -217,3 +217,8 @@ body {
 	vertical-align: top;
 	border:2px solid #000066;
 }
+.retry {
+  text-align: center;
+  margin: 2em auto;
+}
+

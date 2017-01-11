@@ -23,48 +23,14 @@
   },
   "events": {
     "bonus": {
-      "header_less_than_4": {
-        "message": "行/列ヘッダーの値が4以下になった",
-        "frequency": 5
-      },
-      "header_0_or_1": {
-        "message": "行/列ヘッダーの値が0か1になった",
-        "frequency": 3
-      },
-      "header_0": {
-        "message": "行/列ヘッダーの値が全て0になった",
-        "frequency": 1
-      },
-      "long_add_header_interval": {
-        "message": "ヘッダー追加間隔が長くなった",
-        "frequency": 2
-      },
-      "long_scan_time_interval": {
-        "message": "スキャンタイムの発動間隔が長くなった",
-        "frequency": 2
-      }
+      "header_less_than_4": "行/列ヘッダーの値が4以下になった",
+      "header_0_or_1": "行/列ヘッダーの値が0か1になった",
+      "header_0": "行/列ヘッダーの値が全て0になった"
     },
     "ojama": {
-      "header_more_than_5": {
-        "message": "行/列ヘッダーの値が5以上になった",
-        "frequency": 5
-      },
-      "header_5_or_7": {
-        "message": "行/列ヘッダーの値が5か7になった",
-        "frequency": 3
-      },
-      "header_all_9": {
-        "message": "行/列ヘッダーの値が全て9になった",
-        "frequency": 1
-      },
-      "short_add_header_interval": {
-        "message": "ヘッダー追加間隔が短くなった",
-        "frequency": 2
-      },
-      "short_scan_time_interval": {
-        "message": "スキャンタイムの発動間隔が短くなった",
-        "frequency": 2
-      }
+      "header_more_than_5": "行/列ヘッダーの値が5以上になった",
+      "header_5_or_7": "行/列ヘッダーの値が5か7になった",
+      "header_all_9": "行/列ヘッダーの値が全て9になった"
     }
   }
 }

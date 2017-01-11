@@ -1,17 +1,8 @@
 var name; //ユーザー名
-var reading;  //スキャンダイアログ制御用
 
 $(function($) {
   getConfig('./config.json');
   $('.statusboard').hide();
-
-  setDialogsOption();
-  setNameDialogOption();
-  setScanningOption();
-});
-
-//ダイアログの設定
-function setDialogsOption() {
   $('.nameDialog').dialog({
     autoOpen: false,
     width: 500,
@@ -48,11 +39,6 @@ function setDialogsOption() {
     autoOpen: false,
     width: 500,
     modal: true,
-    position: {
-      my: 'center',
-      at: 'center',
-      of: 'body'
-    },
     open: function(event, ui) {
       $(".ui-dialog-titlebar-close").hide();
     }
@@ -61,11 +47,6 @@ function setDialogsOption() {
     autoOpen: false,
     modal: true,
     width: 300,
-    position: {
-      my: 'center',
-      at: 'center',
-      of: 'body'
-    },
     buttons: {
       'GO': function() {
         $(this).dialog('close');
@@ -84,12 +65,7 @@ function setDialogsOption() {
   $('.tutorialDialog').dialog({
     autoOpen: false,
     modal: true,
-    width: '60%',
-    position: {
-      my: 'center',
-      at: 'center',
-      of: 'body'
-    },
+    width: 600,
     buttons: {
       'OK': function() {
         $(this).dialog('close');
@@ -100,11 +76,6 @@ function setDialogsOption() {
     autoOpen: false,
     modal: true,
     width: 500,
-    position: {
-      my: 'center',
-      at: 'center',
-      of: 'body'
-    },
     buttons: {
       'リトライ': function() {
         $(this).dialog('close');
@@ -118,71 +89,11 @@ function setDialogsOption() {
       gameReady();
     }
   });
-}
 
-//名前を尋ねるダイアログの設定
-function setNameDialogOption() {
   name = $('#script').attr('username');
   if (name == 'false') {
     $('.nameDialog').dialog('open');
   } else {
     $('.difficultyDialog').dialog('open');
   }
-}
-
-//スキャンの設定をする
-function setScanningOption() {
-  reading = {
-    clear : function() {
-      $('.firstBarcode,.secondBarcode').val('');
-    },
-    endFirst : function() {
-      return $('.firstBarcode').val().length == 13;
-    },
-    endSecond : function() {
-      return $('.secondBarcode').val().length == 13;
-    },
-    end : function() {
-      return this.endFirst() && this.endSecond();
-    },
-    close : function() {
-      $('.bonustimeDialog').dialog('close');
-    }
-  }
-
-
-  $('.firstBarcode').keydown(function(e) {
-    if (!scanning) {
-      return;
-    }
-    if (e.keyCode == 9) {
-      if (reading.endFirst()) {
-        $(this).prop("disabled", true);
-      }
-      if (reading.end()) {
-        endScanTime();
-        reading.close();
-        return false;
-      }
-      return;
-    }
-    keyCheck(e.keyCode);
-  });
-  $('.secondBarcode').keydown(function(e) {
-    if (!scanning) {
-      return;
-    }
-    if (e.keyCode == 9) {
-      if (reading.endSecond()) {
-        $(this).prop("disabled", true);
-      }
-      if (reading.end()) {
-        endScanTime();
-        reading.close();
-        return false;
-      }
-      return false;
-    }
-    keyCheck(e.keyCode);
-  });
-}
+});

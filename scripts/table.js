@@ -25,12 +25,6 @@ function getConfig(url) {
   });
 }
 
-function setDefaultConfig() {
-  addHeaderInterval = diffConfig.addHeaderInterval.difficulty;
-  scanInterval = diffConfig.scanInterval.difficulty;
-  $('#ballpaper').hide();
-}
-
 //難易度によって設定する
 function setConfigByDiff(diff) {
   switch (diff) {
@@ -44,11 +38,6 @@ function setConfigByDiff(diff) {
       scanInterval = diffConfig.scanInterval.hard;
       scanLimit = diffConfig.scanLimit.hard;
       break;
-    case 'kimagure':
-      addHeaderInterval = diffConfig.addHeaderInterval.kimagure;
-      scanInterval = diffConfig.scanInterval.kimagure;
-      scanLimit = diffConfig.scanLimit.kimagure;
-      break;
     default:
       addHeaderInterval = diffConfig.addHeaderInterval.easy;
       scanInterval = diffConfig.scanInterval.easy;
@@ -61,7 +50,6 @@ function setConfigByDiff(diff) {
 function gameReady(diff) {
   $('.difficultyDialog').dialog('close');
   setConfigByDiff(diff);
-  $('#ballpaper').hide();
   score = 0;
   playingTime = 0;
   diff = difficulty;
@@ -83,6 +71,7 @@ function gameStart() {
   addHeader = true;
   var timer = setInterval(function() {
     playingTime++;
+    if (addHeader) addHeaderTime++;
     updateTimer();
     if (isAddHeaderTime()) {
       var maxHeaderName = getMaxHeaderName();
@@ -254,7 +243,7 @@ function setHeaderOnOvercellAtRandom(target) {
 
 //ランダムなヘッダーを末尾に追加
 function addHeaderAtRandom() {
-  var whichHeader = Math.floor(Math.random()*2);  //行と列どちらのヘッダーか
+  var whichHeader = 0;  //行と列どちらのヘッダーか
   var header = Math.floor(Math.random()*10);  //ヘッダーの値
 
   if (whichHeader == 0) {
@@ -303,6 +292,7 @@ function textboxOnFocusout(target) {
     updateScore();
     if (isScanTime()) {
       addHeader = false;
+      addHeaderTime = 0;
       scanning = true;
       delEventTimeMessage();
       scanTime = scanLimit;

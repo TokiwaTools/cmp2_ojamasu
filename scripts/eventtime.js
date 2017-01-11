@@ -32,7 +32,7 @@ function setEventTimeMessage(event) {
     eventMessage = scanEvents.ojama[eventState].message;
   }
 
-  $('.eventContent').text(eventMessage);
+  $('.eventContent').text(scanEvents.ojama[eventState].message);
   causeEvent(eventState);
 
   //console.log(eventMessage);

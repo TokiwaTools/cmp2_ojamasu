@@ -18,18 +18,16 @@
       }
     ?>
     ></script>
-    <!--<script type="text/javascript" src="scripts/whatsyourname.js"></script>-->
-    <!--<script type="text/javascript" src="scripts/question.js"></script>-->
     <script type="text/javascript" src="scripts/score.js"></script>
     <script type="text/javascript" src="scripts/timer.js"></script>
     <script type="text/javascript" src="scripts/scantime.js"></script>
     <script type="text/javascript" src="scripts/eventtime.js"></script>
     <script type="text/javascript" src="scripts/table.js"></script>
     <script type="text/javascript" src="scripts/barcode.js"></script>
+    <script type="text/javascript" src="scripts/ball.js"></script>
     <title>おじゃマス計算</title>
   </head>
   <body>
-
     <div class="title">
       <img src="images/title2.png">
     </div>
@@ -66,7 +64,9 @@
     <div class="areyouready" title="準備はOK？"></div>
 
     <div class="tutorialDialog" title="チュートリアル">
-      <iframe width="100%" height="480" src="https://www.youtube.com/embed/NTj33EWSn1I" frameborder="0" allowfullscreen></iframe>
+      <div class="video">
+        <iframe class="videoFrame"src="https://www.youtube.com/embed/NTj33EWSn1I" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
 
     <div class="bonustimeDialog" title="スキャンタイム！">

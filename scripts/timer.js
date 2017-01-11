@@ -2,6 +2,7 @@ var timer;        //タイマーボードの要素
 
 var addHeader = false;
 var addHeaderInterval;  //ヘッダー追加の間隔(秒)
+var addHeaderTime = 0;
 
 //タイマーボードの作成
 function createTimerboard() {
@@ -25,5 +26,5 @@ function isAddHeaderTime() {
   if (playingTime == 0 || !addHeader) {
     return false;
   }
-  return playingTime%addHeaderInterval == 0;
+  return addHeaderTime%addHeaderInterval == 0;
 }

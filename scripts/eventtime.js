@@ -104,6 +104,7 @@ function causeEvent(eventState) {
       $('#canvas').attr('width', w);
       $('#canvas').attr('height', h);
       $('#ballpaper').show();
+      addHeaderInterval = 12;
       break;
   }
 }

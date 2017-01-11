@@ -25,11 +25,6 @@ function getConfig(url) {
   });
 }
 
-function setDefaultConfig() {
-  addHeaderInterval = diffConfig.addHeaderInterval.difficulty;
-  scanInterval = diffConfig.scanInterval.difficulty;
-}
-
 //難易度によって設定する
 function setConfigByDiff(diff) {
   switch (diff) {
@@ -77,7 +72,6 @@ function gameStart() {
   var timer = setInterval(function() {
     playingTime++;
     if (addHeader) addHeaderTime++;
-    console.log(addHeaderTime);
     updateTimer();
     if (isAddHeaderTime()) {
       var maxHeaderName = getMaxHeaderName();

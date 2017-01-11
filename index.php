@@ -64,7 +64,9 @@
     <div class="areyouready" title="準備はOK？"></div>
 
     <div class="tutorialDialog" title="チュートリアル">
-      <video src="pv.webm" class="pv" controls width=100%></video>
+      <div class="video">
+        <iframe class="videoFrame"src="https://www.youtube.com/embed/NTj33EWSn1I" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
 
     <div class="bonustimeDialog" title="スキャンタイム！">

@@ -4,9 +4,9 @@
     "max_row": 10,
     "max_column": 10,
     "add_header_interval": {
-      "easy": 30,
-      "normal": 20,
-      "hard": 14
+      "easy": 40,
+      "normal": 30,
+      "hard": 16
     }
   },
   "scantime": {

@@ -85,7 +85,7 @@ function setDialogsOption() {
   $('.tutorialDialog').dialog({
     autoOpen: false,
     modal: true,
-    width: '80%',
+    width: '70%',
     position: {
       my: 'center',
       at: 'center',

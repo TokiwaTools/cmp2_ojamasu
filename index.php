@@ -24,7 +24,6 @@
     <script type="text/javascript" src="scripts/eventtime.js"></script>
     <script type="text/javascript" src="scripts/table.js"></script>
     <script type="text/javascript" src="scripts/barcode.js"></script>
-    <script type="text/javascript" src="scripts/ball.js"></script>
     <title>おじゃマス計算</title>
   </head>
   <body>
